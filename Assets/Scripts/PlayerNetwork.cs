@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayerNetwork : NetworkBehaviour
 {
-    [SerializeField] float playerSpeed = 1; 
+    [SerializeField] float playerSpeed = 1;
+    [SerializeField] Camera _camera;
 
     private NetworkVariable<PlayerStats> randomNumber = new NetworkVariable<PlayerStats>(
         new PlayerStats
@@ -38,10 +39,31 @@ public class PlayerNetwork : NetworkBehaviour
         {
             Debug.Log(OwnerClientId + " : RandomNumber Id was" + newVale.alive + " ; " + newVale.health + " ; " + newVale.ammoAmount + " ; " + newVale.name);
         };
+
+        
     }
+
+    public void SetPlayerSpeed(float value) {
+        playerSpeed = value;
+    }
+
+    public float GetPlayerSpeed() {
+        return playerSpeed;
+    }
+
+    private void Start()
+    {
+        if (!IsOwner)
+        {
+            _camera.gameObject.SetActive(false);
+        }
+    }
+        Vector2 rotate = new Vector2(0,0);
     private void Update()
     {
         if (!IsOwner) return;
+        
+
 
         if (Input.GetKeyDown(KeyCode.T)) {
             randomNumber.Value = new PlayerStats
@@ -61,9 +83,13 @@ public class PlayerNetwork : NetworkBehaviour
         direction.x += Input.GetAxis("Horizontal");
         direction.y += Input.GetAxis("Vertical");
 
+      //  rotate.x += Input.GetAxis("Mouse X");
+      //  rotate.y += Input.GetAxis("Mouse Y");
+
         direction.Normalize();
 
         transform.position += new Vector3(direction.x, 0, direction.y) * playerSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(-rotate.y, rotate.x, 0);
 
         
 
