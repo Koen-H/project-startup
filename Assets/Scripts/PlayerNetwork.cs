@@ -7,8 +7,10 @@ using UnityEngine;
 public class PlayerNetwork : NetworkBehaviour
 {
     [SerializeField] float playerSpeed = 1;
-    [SerializeField] Camera _camera;
+    [SerializeField] int testHealth; 
 
+
+    private NetworkVariable<int> takeDamage = new NetworkVariable<int>(2, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner); 
 
     private NetworkVariable<PlayerStats> randomNumber = new NetworkVariable<PlayerStats>(
         new PlayerStats
@@ -76,7 +78,7 @@ public class PlayerNetwork : NetworkBehaviour
             };
   
         }
-
+        testHealth = randomNumber.Value.health; 
 
         
         Vector2 direction = new Vector2(0, 0);
