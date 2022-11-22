@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayerNetwork : NetworkBehaviour
 {
-    [SerializeField] float playerSpeed = 1; 
+    [SerializeField] float playerSpeed = 1;
+
 
     private NetworkVariable<PlayerStats> randomNumber = new NetworkVariable<PlayerStats>(
         new PlayerStats
