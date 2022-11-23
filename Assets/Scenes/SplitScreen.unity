@@ -279,6 +279,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  Player1: 1
 --- !u!4 &27925184
 Transform:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &27925188
 CapsuleCollider:
@@ -472,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 265730468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1667, y: 2.1667, z: 2.1667}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1593325360}
@@ -512,7 +513,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 81b5de8cb53c0e34a902de406009bbbd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -627,7 +628,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &470656430
 CapsuleCollider:
@@ -660,6 +661,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  Player1: 0
 --- !u!4 &470656432
 Transform:
   m_ObjectHideFlags: 0
@@ -1326,7 +1328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 27925182}
-  force: 10
+  force: 45
+  Player1: 1
 --- !u!1 &1593325359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 470656426}
   force: 10
+  Player1: 0
 --- !u!1 &1986589304
 GameObject:
   m_ObjectHideFlags: 0

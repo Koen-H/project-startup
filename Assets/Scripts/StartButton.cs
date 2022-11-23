@@ -15,5 +15,6 @@ public class StartButton : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1f;
+        Destroy(this.transform.parent.transform.parent);
     }
 }
