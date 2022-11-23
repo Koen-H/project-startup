@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
                 //    movement.x += Input.GetAxis("Horizontal");
                 //    movement.z += Input.GetAxis("Vertical");
 
-                movement.Normalize();
+                if (movement.y == 0) movement.Normalize();
 
         Vector3 playerPosition = this.transform.position;
         Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down);
@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer))
         {
-            movement.y = 10f;
+            movement.y = 25f;
         }
 
         
