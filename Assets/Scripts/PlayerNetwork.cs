@@ -54,14 +54,8 @@ public class PlayerNetwork : NetworkBehaviour
         return playerSpeed;
     }
 
-    private void Start()
-    {
-        if (!IsOwner)
-        {
-            _camera.gameObject.SetActive(false);
-        }
-    }
-        Vector2 rotate = new Vector2(0,0);
+
+      Vector2 rotate = new Vector2(0,0);
     private void Update()
     {
         if (!IsOwner) return;
