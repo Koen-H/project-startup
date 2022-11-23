@@ -29,14 +29,13 @@ public class PushAbility : MonoBehaviour
 
             Physics.Raycast(position, direction, out RaycastHit hit, 2);
 
-           
+
             if (hit.collider != null && hit.collider.gameObject != parent && hit.distance < closestPlayerDistance && hit.collider.gameObject.TryGetComponent<Movement>(out Movement otherPlayer))
             {
                 bumpPlayer = otherPlayer;
-                closestPlayerDistance= hit.distance;
+                closestPlayerDistance = hit.distance;
                 bumpDirection = hit.point - this.transform.position;
-                Debug.Log("works");
-          }
+            }
             Debug.DrawRay(position, direction * 2, Color.red);
 
         }
