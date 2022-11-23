@@ -9,7 +9,7 @@ public class PushAbility : MonoBehaviour
 
     //Write automatic getter
     [SerializeField] GameObject parent;
-    [SerializeField] float force = 1000f;
+    [SerializeField] float force = 500f;
     [SerializeField] bool Player1 = true;
     Movement bumpPlayer;
 
