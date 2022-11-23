@@ -33,7 +33,6 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         rigidBody.AddForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
 
         movement = Vector3.zero;
