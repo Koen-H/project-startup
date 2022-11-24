@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 5481577643495235200}
   - component: {fileID: 5481577643495235207}
   m_Layer: 0
-  m_Name: Player (Splitscreen
+  m_Name: Player With Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
