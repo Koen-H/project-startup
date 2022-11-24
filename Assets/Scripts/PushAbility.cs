@@ -61,10 +61,10 @@ public class PushAbility : MonoBehaviour
             //No up bumping allowed
             bumpDirection.y = 0;
             bumpDirection.Normalize();
-            Debug.Log(bumpDirection);
-            Debug.Log(Time.deltaTime * force);
+        //   Debug.Log(bumpDirection);
+         //   Debug.Log(Time.deltaTime * force);
             bumpDirection *= (Time.deltaTime * force);
-            Debug.Log(bumpDirection);
+         //   Debug.Log(bumpDirection);
             bumpPlayerRigidBody.AddForce(bumpDirection, ForceMode.Impulse);
 
             bumpPlayer = null;
