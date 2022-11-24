@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,13 @@ public class ItemPickUp : MonoBehaviour
             Debug.Log("Item Should be picked up ");
             this.gameObject.SetActive(false);
             other.gameObject.GetComponentInChildren<PlayerInventory>().playerStorage.Add(this.gameObject);
+            PlaceBlocksAbility placeBlocksAbility = other.gameObject.GetComponentInChildren<PlaceBlocksAbility>();
+            placeBlocksAbility.hologramPrefab = this.gameObject;
+            placeBlocksAbility.blockPrefab = this.gameObject;
+            placeBlocksAbility.InstantiateHologram();
+            this.gameObject.GetComponent<ItemPickUp>().enabled = false;
+            this.gameObject.layer = 3;
+            this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         }
     }
 }

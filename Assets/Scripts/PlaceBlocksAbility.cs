@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlaceBlocksAbility : MonoBehaviour
 {
 
-    [SerializeField] GameObject blockPrefab;
-    [SerializeField] GameObject hologramPrefab;
+    public GameObject blockPrefab;
+    public GameObject hologramPrefab;
     [SerializeField] Transform blockPlacePosition;
     [SerializeField] LayerMask placeAbleLayer;
-    GameObject placeBlock;
-
+    [HideInInspector] public GameObject placeBlock;
+    [SerializeField] Material holoMat;
     Vector3 placePoint;
 
     float cooldownTimer = 0;
@@ -19,7 +19,18 @@ public class PlaceBlocksAbility : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       placeBlock = Instantiate(hologramPrefab);
+        InstantiateHologram();
+    }
+    public void InstantiateHologram()
+    {
+        Destroy(placeBlock);
+
+        placeBlock = Instantiate(hologramPrefab);
+        for (int i = 0; i < hologramPrefab.transform.childCount; i++)
+        {
+            placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
+        }
+        placeBlock.SetActive(true);
     }
 
     // Update is called once per frame
@@ -36,6 +47,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out RaycastHit hit, float.MaxValue,placeAbleLayer))
         {
+            Debug.Log("Ray hit !! ");
             placePoint = hit.point;
          //   Debug.Log(placePoint);
             placeBlock.transform.position = placePoint;
@@ -45,6 +57,7 @@ public class PlaceBlocksAbility : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
            GameObject objectPlaced = Instantiate(blockPrefab, placePoint, this.transform.parent.rotation);
+            objectPlaced.SetActive(true);
             cooldownTimer = COOLDOWN_BLOCK_PLACING;
 
         }
