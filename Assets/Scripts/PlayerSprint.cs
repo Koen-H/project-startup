@@ -4,36 +4,29 @@ using UnityEngine;
 
 public class PlayerSprint : MonoBehaviour
 {
-    PlayerNetwork playerNetwork;
 
     const int MAX_SPRINT_AMOUNT = 100;
     float sprintAmount = 100f;
-
-    const float STANDARD_SPEED = 5f;
     const float SPRINT_MODIFIER = 2f;
     const float REGEN_SPRINT_AMOUNT = 25f;
     const float DRAIN_SPRINT_AMOUNT = 100f;
 
 
+    Movement movement;
     private void Start()
     {
-        playerNetwork = this.gameObject.GetComponent<PlayerNetwork>();
+        movement = this.gameObject.GetComponentInParent<Movement>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (playerNetwork == null)
-        {
-            Debug.LogError("NO PLAYERNETWORK ON: " + gameObject.name);
-            return;
-        }
+    { 
 
-        playerNetwork.SetPlayerSpeed(STANDARD_SPEED);
-        if (sprintAmount > 0 && Input.GetKey(KeyCode.Space))
+        movement.SetStandardSpeed();
+        if (sprintAmount > 0 && Input.GetKey(KeyCode.LeftShift))
         {
             sprintAmount -= DRAIN_SPRINT_AMOUNT * Time.deltaTime;
-            playerNetwork.SetPlayerSpeed(STANDARD_SPEED * SPRINT_MODIFIER);
+            movement.SetPlayerSpeed(movement.GetStandardSpeed() * SPRINT_MODIFIER);
 
         } else if (sprintAmount < MAX_SPRINT_AMOUNT)
         {

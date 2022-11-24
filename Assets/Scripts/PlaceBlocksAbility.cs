@@ -42,7 +42,7 @@ public class PlaceBlocksAbility : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
            GameObject objectPlaced = Instantiate(blockPrefab, placePoint, this.transform.parent.rotation);
             cooldownTimer = COOLDOWN_BLOCK_PLACING;
