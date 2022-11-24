@@ -12,9 +12,24 @@ public class Movement : MonoBehaviour
     [SerializeField] bool Player1 = true;
     const float STANDARD_SPEED = 25f;
 
+
+    bool started = false;
+
+    private void Start()
+    {
+        StartTimer.Instance.OnGameStart += Instance_OnGameStart;
+    }
+
+    private void Instance_OnGameStart(object sender, System.EventArgs e)
+    {
+        started = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!started) return;
+
         movement2d.x += Input.GetAxis("Horizontal");
         movement2d.y += Input.GetAxis("Vertical");
 

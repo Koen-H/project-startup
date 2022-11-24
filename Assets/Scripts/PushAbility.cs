@@ -15,11 +15,25 @@ public class PushAbility : MonoBehaviour
 
     Vector3 bumpDirection;
 
-    
 
 
-    private void Update()
+    bool started = false;
+
+    private void Start()
     {
+        StartTimer.Instance.OnGameStart += Instance_OnGameStart;
+    }
+
+    private void Instance_OnGameStart(object sender, System.EventArgs e)
+    {
+        started = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!started) return;
+
         float closestPlayerDistance = float.MaxValue;
 
         if ((Input.GetKeyDown(KeyCode.LeftAlt) && Player1) || (Input.GetKeyDown(KeyCode.RightAlt) && !Player1))
