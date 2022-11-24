@@ -8,11 +8,14 @@ public class TopBlockPlacing : MonoBehaviour
     [SerializeField] GameObject hologramPrefab;
     [SerializeField] Camera topDownCamera;
     [SerializeField] LayerMask placeAbleLayer;
+
+    [SerializeField] GameObject blockPlacePos;
     GameObject placeBlock;
 
     Vector3 placePoint;
 
     bool canPlace = false;
+    [SerializeField] bool playerOne = true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +28,7 @@ public class TopBlockPlacing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if ((Input.GetKeyDown(KeyCode.C) && playerOne) || (Input.GetKeyDown(KeyCode.N) && !playerOne))
         {
             canPlace = !canPlace;
             topDownCamera.gameObject.SetActive(canPlace);
@@ -34,7 +37,9 @@ public class TopBlockPlacing : MonoBehaviour
         if (!canPlace) return;
 
 
-        Ray blockpos = topDownCamera.ScreenPointToRay(Input.mousePosition);
+        //  Ray blockpos = topDownCamera.ScreenPointToRay(Input.mousePosition);
+
+        Ray blockpos = new Ray(blockPlacePos.transform.position, Vector3.down);
 
         if (Physics.Raycast(blockpos, out RaycastHit hit, float.MaxValue, placeAbleLayer))
         {
@@ -43,10 +48,16 @@ public class TopBlockPlacing : MonoBehaviour
             placeBlock.transform.position = placePoint;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ((Input.GetKeyDown(KeyCode.Q) && playerOne) || (Input.GetKeyDown(KeyCode.O) && !playerOne))
         {
             GameObject objectPlaced = Instantiate(blockPrefab, placePoint, Quaternion.identity);
 
         }
+    }
+
+
+    void mouseInput()
+    {
+        Ray blockpos = topDownCamera.ScreenPointToRay(Input.mousePosition);
     }
 }
