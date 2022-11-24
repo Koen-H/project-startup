@@ -13,6 +13,9 @@ public class PlaceBlocksAbility : MonoBehaviour
 
     Vector3 placePoint;
 
+    float cooldownTimer = 0;
+    const float COOLDOWN_BLOCK_PLACING = 1.2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,13 @@ public class PlaceBlocksAbility : MonoBehaviour
     void Update()
     {
 
+        if (cooldownTimer > 0)
+        {
+            Debug.Log(cooldownTimer);
+            cooldownTimer -= Time.deltaTime;
+            placeBlock.transform.position = new Vector3(100, 100, 100);
+            return;
+        }
 
         if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out RaycastHit hit, float.MaxValue,placeAbleLayer))
         {
@@ -31,10 +41,17 @@ public class PlaceBlocksAbility : MonoBehaviour
             placeBlock.transform.position = placePoint;
         }
 
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
            GameObject objectPlaced = Instantiate(blockPrefab, placePoint, this.transform.parent.rotation);
+            cooldownTimer = COOLDOWN_BLOCK_PLACING;
 
         }
+    }
+
+   public float getCooldownTimer()
+    {
+        return cooldownTimer;
     }
 }
