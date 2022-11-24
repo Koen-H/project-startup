@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSprint : MonoBehaviour
 {
 
-    const int MAX_SPRINT_AMOUNT = 100;
+    const int MAX_SPRINT_AMOUNT = 1;
     float sprintAmount = 100f;
     const float SPRINT_MODIFIER = 2f;
     const float REGEN_SPRINT_AMOUNT = 25f;
