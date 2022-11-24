@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float speed = 50f;
     Vector3 movement = Vector3.zero;
+    Vector2 movement2d = Vector2.zero;
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] bool Player1 = true;
@@ -38,7 +39,6 @@ public class Movement : MonoBehaviour
     {
         movement = new Vector3(movement2d.x, movement.y, movement2d.y); 
 
-        if(isJumping) Debug.Log("movemment Vector should be  : " + movement);
         rigidBody.AddForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
 
         movement = Vector3.zero;
