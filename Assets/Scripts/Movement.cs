@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float speed = 50f;
     Vector3 movement = Vector3.zero;
-    [SerializeField] Rigidbody rigidBody;
+    public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] bool Player1 = true;
 

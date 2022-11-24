@@ -30,11 +30,11 @@ public class GrabItemAbility : MonoBehaviour
                 Physics.Raycast(position, direction, out RaycastHit hit, 2);
 
 
-                if (hit.collider != null && hit.collider.gameObject != parent && hit.collider.gameObject.TryGetComponent<PickupableItem>(out PickupableItem otherPlayer))
+/*                if (hit.collider != null && hit.collider.gameObject != parent && hit.collider.gameObject.TryGetComponent<ItemPickUp>(out ItemPickUp otherPlayer))
                 {
                     Debug.Log("Picked up Item");
                     Destroy(otherPlayer.gameObject);
-                }
+                }*/
                 Debug.DrawRay(position, direction * 2, Color.red);
 
             }
