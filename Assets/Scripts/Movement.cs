@@ -29,8 +29,6 @@ public class Movement : MonoBehaviour
         {
             movement.y = 30f;
             Debug.Log("movemment Vector is : " + movement);
-            isJumping = true;
-
         }
 
         
@@ -45,6 +43,5 @@ public class Movement : MonoBehaviour
 
         movement = Vector3.zero;
         movement2d = Vector2.zero;
-        isJumping = false;
     }
 }
