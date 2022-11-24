@@ -78,9 +78,15 @@ public class Movement : MonoBehaviour
         return STANDARD_SPEED;
     }
 
+    public void Look(InputAction.CallbackContext context)
+    {
+  
+        transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
+
+    }
     void Rotation()
     {
-        transform.Rotate(0, Input.GetAxisRaw("Mouse X") * rotationSensitivity, 0);
+    //    transform.Rotate(0, Input.GetAxisRaw("Mouse X") * rotationSensitivity, 0);
     }
 
 
