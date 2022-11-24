@@ -22,6 +22,9 @@ public class ItemPickUp : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             Debug.Log("Item Should be picked up ");
+
+            GameObject newItem = Instantiate(this.gameObject, (other.transform.position - other.transform.forward*2), Quaternion.identity); 
+
             this.gameObject.SetActive(false);
             other.gameObject.GetComponentInChildren<PlayerInventory>().playerStorage.Add(this.gameObject);
             PlaceBlocksAbility placeBlocksAbility = other.gameObject.GetComponentInChildren<PlaceBlocksAbility>();
