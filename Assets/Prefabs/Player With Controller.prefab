@@ -69,6 +69,8 @@ MonoBehaviour:
   placeAbleLayer:
     serializedVersion: 2
     m_Bits: 8
+  placeBlock: {fileID: 0}
+  holoMat: {fileID: 0}
 --- !u!114 &7312992682015280547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +259,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 999959ac-8a1b-4807-9c49-f71a591f1777
     m_ActionName: Player/Attack[/Mouse/leftButton,/DualShock4GamepadHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 93860ef8-1d9f-4fe1-94e1-97d70b995fe8
+    m_ActionName: Player/Place[/Mouse/rightButton,/DualShock4GamepadHID/rightTrigger,/XInputControllerWindows/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

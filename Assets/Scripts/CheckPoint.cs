@@ -21,7 +21,7 @@ public class CheckPoint : MonoBehaviour
         //6 is the player layer
         if (other.gameObject.layer == 6)
         {
-            other.gameObject.GetComponentInChildren<PlayerSpawnLogic>().currentCheckPoint = this.gameObject; //Setting Checkpoint
+            other.gameObject.GetComponentInChildren<PlayerSpawnLogic>().currentCheckPoint = this.gameObject.GetComponent<CheckPoint>(); //Setting Checkpoint
         }
     }
 }

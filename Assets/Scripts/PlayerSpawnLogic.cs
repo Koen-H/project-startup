@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PlayerSpawnLogic : MonoBehaviour
 {
-    public GameObject currentCheckPoint;
+    public CheckPoint currentCheckPoint;
     [SerializeField] GameObject playerMesh;
     [SerializeField] GameObject parent;
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentCheckPoint = GameObject.FindObjectOfType<CheckPoint>();
     }
 
     public void DespawnPlayer()
     {
-        playerMesh.SetActive(false);
+      //  playerMesh.SetActive(false);
         Movement playerMovementScript = parent.GetComponent<Movement>();
-        playerMovementScript.enabled = false;
+        playerMovementScript.enabled = true;
         playerMovementScript.rigidBody.velocity = Vector3.zero;
+        SpawnPlayer();
 
         // Rest any health or ability attributes
     }
