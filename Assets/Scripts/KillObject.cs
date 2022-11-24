@@ -25,7 +25,8 @@ public class KillObject : MonoBehaviour
         //6 is the player layer
         if (other.gameObject.layer == 6)
         {
-            Destroy(other.gameObject);
+            Debug.Log("PLayer should Despwan");
+            other.gameObject.GetComponentInChildren<PlayerSpawnLogic>().DespawnPlayer();
         }
     }
 }
