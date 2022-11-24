@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     [SerializeField] bool Player1 = true;
     const float STANDARD_SPEED = 25f;
 
+    [SerializeField] float rotationSensitivity; 
+
     public void Move(InputAction.CallbackContext context)
     {
         movement2d = context.ReadValue<Vector2>();
@@ -45,14 +47,17 @@ public class Movement : MonoBehaviour
             movement.y = 30f;
         }
 
-        
+        Rotation();
+
+
+
     }
 
     private void FixedUpdate()
     {
-        movement = new Vector3(movement2d.x, movement.y, movement2d.y); 
+        movement = new Vector3(movement2d.x, movement.y, movement2d.y);
 
-        rigidBody.AddForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
+        rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
 
         movement = Vector3.zero;
         //movement2d = Vector2.zero;
@@ -71,6 +76,11 @@ public class Movement : MonoBehaviour
     public float GetStandardSpeed()
     {
         return STANDARD_SPEED;
+    }
+
+    void Rotation()
+    {
+        transform.Rotate(0, Input.GetAxisRaw("Mouse X") * rotationSensitivity, 0);
     }
 
 

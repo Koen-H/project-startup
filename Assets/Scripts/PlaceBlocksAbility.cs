@@ -22,7 +22,6 @@ public class PlaceBlocksAbility : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory = GetComponent<PlayerInventory>();
         InstantiateHologram();
     }
     public void InstantiateHologram()
