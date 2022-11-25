@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
 
     Vector3 movement = Vector3.zero;
     Vector2 movement2d = Vector2.zero;
+    Vector2 look2d = Vector2.zero;
     bool jumped = false;
   //  [Space(10)]
     [Header("Setup")]
@@ -51,6 +52,8 @@ public class Movement : MonoBehaviour
             movement.y = 30f;
         }
 
+        transform.Rotate(0, look2d.x * rotationSensitivity, 0);
+
         Rotation();
 
 
@@ -85,7 +88,8 @@ public class Movement : MonoBehaviour
     public void Look(InputAction.CallbackContext context)
     {
   
-        transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
+        //transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
+        look2d = context.ReadValue<Vector2>();
 
     }
     void Rotation()
