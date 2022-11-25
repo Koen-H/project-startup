@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float STANDARD_SPEED = 25f;
     [SerializeField] float JUMP_FORCE = 30f;
 
+    [SerializeField] GameObject cameraObj;
+
 
     Vector3 movement = Vector3.zero;
     Vector2 movement2d = Vector2.zero;
