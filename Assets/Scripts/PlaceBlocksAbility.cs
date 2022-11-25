@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class PlaceBlocksAbility : MonoBehaviour
 {
 
+    [Header("Changable")]
+    [SerializeField] float COOLDOWN_BLOCK_PLACING = 1.2f;
+
+    [Header("Setup")]
     public GameObject blockPrefab;
     public GameObject hologramPrefab;
     [SerializeField] Transform blockPlacePosition;
@@ -15,7 +19,6 @@ public class PlaceBlocksAbility : MonoBehaviour
     Vector3 placePoint;
 
     float cooldownTimer = 0;
-    const float COOLDOWN_BLOCK_PLACING = 1.2f;
 
     PlayerInventory inventory;
 
