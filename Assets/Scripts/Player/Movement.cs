@@ -9,8 +9,10 @@ public class Movement : MonoBehaviour
 {
   //  [Space(10)]
     [Header("Changable")]
-    [SerializeField] float speed = 50f;
+    float speed = 50f;
     [SerializeField] float rotationSensitivity = 1f; 
+    [SerializeField] float STANDARD_SPEED = 25f;
+    [SerializeField] float JUMP_FORCE = 30f;
 
 
     Vector3 movement = Vector3.zero;
@@ -21,7 +23,6 @@ public class Movement : MonoBehaviour
     [Header("Setup")]
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
-    const float STANDARD_SPEED = 25f;
 
 
     public void Move(InputAction.CallbackContext context)
@@ -49,7 +50,7 @@ public class Movement : MonoBehaviour
 
         if (jumped && Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer))
         {
-            movement.y = 30f;
+            movement.y = JUMP_FORCE;
         }
 
         transform.Rotate(0, look2d.x * rotationSensitivity, 0);

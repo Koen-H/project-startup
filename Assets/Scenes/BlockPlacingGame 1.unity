@@ -175,7 +175,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340059951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -974,8 +974,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122742546058922642, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 4122742546058922642, guid: 20e9a48384566f545bc68e03db257c68,
+        type: 3}
       propertyPath: m_Name
       value: Controller Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122742546058922645, guid: 20e9a48384566f545bc68e03db257c68,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4122742546058922646, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
@@ -985,17 +996,17 @@ PrefabInstance:
     - target: {fileID: 4122742546058922646, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.0625014
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4122742546058922646, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4122742546058922646, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.637789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4122742546058922646, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
@@ -1032,7 +1043,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4122742546058922647, guid: 20e9a48384566f545bc68e03db257c68, type: 3}
+    - {fileID: 4122742546058922644, guid: 20e9a48384566f545bc68e03db257c68, type: 3}
+    - {fileID: 4122742546058922645, guid: 20e9a48384566f545bc68e03db257c68, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 20e9a48384566f545bc68e03db257c68, type: 3}
 --- !u!1 &2037880671
 GameObject:

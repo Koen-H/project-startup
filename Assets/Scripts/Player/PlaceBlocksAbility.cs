@@ -43,6 +43,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     void Update()
     {
 
+        placeBlock.transform.rotation = this.transform.parent.rotation;
 
         if (cooldownTimer > 0)
         {
