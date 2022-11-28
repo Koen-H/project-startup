@@ -55,7 +55,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out RaycastHit hit, float.MaxValue,placeAbleLayer))
         {
-            Debug.Log("Ray hit !! ");
+          //  Debug.Log("Ray hit !! ");
             placePoint = hit.point;
          //   Debug.Log(placePoint);
             placeBlock.transform.position = placePoint;
@@ -73,10 +73,13 @@ public class PlaceBlocksAbility : MonoBehaviour
 
     public void Place(InputAction.CallbackContext context)
     {
-        Debug.Log("wdafaw");
-        GameObject objectPlaced = Instantiate(blockPrefab, placePoint, this.transform.parent.rotation);
-        objectPlaced.SetActive(true);
-        cooldownTimer = COOLDOWN_BLOCK_PLACING;
+        if (cooldownTimer <= 0)
+        {
+            Debug.Log("wdafaw");
+            GameObject objectPlaced = Instantiate(blockPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
+            objectPlaced.SetActive(true);
+            cooldownTimer = COOLDOWN_BLOCK_PLACING;
+        }
     }
 
     public float getCooldownTimer()
