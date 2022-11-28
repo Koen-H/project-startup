@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,12 +31,24 @@ public class PlaceBlocksAbility : MonoBehaviour
     public void InstantiateHologram()
     {
         Destroy(placeBlock);
+        placeBlock = Instantiate(hologramPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
+       // placeBlock.transform.rotation = this.transform.parent.rotation;
+        //   if (placeBlock.transform.TryGetComponent<Renderer>(out Renderer rend)) rend.material = holoMat;
+        if (placeBlock.transform.TryGetComponent<Rigidbody>(out Rigidbody rig))
+        {
+            Destroy(rig);
+        }
+        if (placeBlock.TryGetComponent<Collider>(out Collider coll)) Destroy(coll);
+        placeBlock.layer = 0;
 
-        placeBlock = Instantiate(hologramPrefab);
+        placeBlock.transform.GetComponent<Renderer>().material = holoMat;
+
         for (int i = 0; i < hologramPrefab.transform.childCount; i++)
         {
             placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
+            placeBlock.layer = 0;
         }
+        placeBlock.transform.position = placePoint + blockPrefab.transform.position;
         placeBlock.SetActive(true);
     }
 
@@ -43,7 +56,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     void Update()
     {
 
-        placeBlock.transform.rotation = this.transform.parent.rotation;
+        placeBlock.transform.rotation = this.transform.parent.rotation * blockPrefab.transform.rotation;
 
         if (cooldownTimer > 0)
         {
@@ -58,7 +71,7 @@ public class PlaceBlocksAbility : MonoBehaviour
           //  Debug.Log("Ray hit !! ");
             placePoint = hit.point;
          //   Debug.Log(placePoint);
-            placeBlock.transform.position = placePoint;
+            placeBlock.transform.position = placePoint + blockPrefab.transform.position;
         }
 
         /*
@@ -78,6 +91,7 @@ public class PlaceBlocksAbility : MonoBehaviour
             Debug.Log("wdafaw");
             GameObject objectPlaced = Instantiate(blockPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
             objectPlaced.SetActive(true);
+            objectPlaced.layer = 3;
             cooldownTimer = COOLDOWN_BLOCK_PLACING;
         }
     }
