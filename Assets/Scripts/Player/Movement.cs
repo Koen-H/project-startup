@@ -1,21 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+  //  [Space(10)]
+    [Header("Changable")]
     [SerializeField] float speed = 50f;
+    [SerializeField] float rotationSensitivity = 1f; 
+
+
     Vector3 movement = Vector3.zero;
     Vector2 movement2d = Vector2.zero;
+    Vector2 look2d = Vector2.zero;
     bool jumped = false;
+  //  [Space(10)]
+    [Header("Setup")]
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] bool Player1 = true;
     const float STANDARD_SPEED = 25f;
 
-    [SerializeField] float rotationSensitivity; 
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -36,8 +43,6 @@ public class Movement : MonoBehaviour
 
         movement2d.Normalize();
 
-                if (movement.y == 0) movement.Normalize();
-
         Vector3 playerPosition = this.transform.position;
         Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down);
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
@@ -46,6 +51,8 @@ public class Movement : MonoBehaviour
         {
             movement.y = 30f;
         }
+
+        transform.Rotate(0, look2d.x * rotationSensitivity, 0);
 
         Rotation();
 
@@ -81,7 +88,8 @@ public class Movement : MonoBehaviour
     public void Look(InputAction.CallbackContext context)
     {
   
-        transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
+        //transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
+        look2d = context.ReadValue<Vector2>();
 
     }
     void Rotation()

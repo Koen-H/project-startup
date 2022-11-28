@@ -6,17 +6,20 @@ using static UnityEngine.LightAnchor;
 
 public class PlayerDash : MonoBehaviour
 {
-    const float DASH_DURATION = 1;
-    const float DASH_COOLDOWN = 4;
-    const float DASH_STRENGTH = 1000;
+
+    [Header("Dash (Changable)")]
+    [SerializeField] float DASH_DURATION = 1;
+    [SerializeField] float DASH_COOLDOWN = 4;
+    [SerializeField] float DASH_STRENGTH = 1000;
     bool dashReady = true;
     bool isDashing = false;
 
-
-    [SerializeField] const bool INCLUDE_PUSH = true;
-
-    [SerializeField] GameObject parent;
+    [Header("Push (Changable)")]
+    [SerializeField] bool INCLUDE_PUSH = true;
     [SerializeField] float force = 500f;
+
+    [Header("Setup")]
+    [SerializeField] GameObject parent;
     Movement bumpPlayer;
 
     Vector3 bumpDirection;
@@ -36,7 +39,7 @@ public class PlayerDash : MonoBehaviour
     {
 
 
-        if (bumpPlayer != null)
+        if (bumpPlayer != null && INCLUDE_PUSH)
         {
             Debug.Log("past");
             Rigidbody bumpPlayerRigidBody = bumpPlayer.gameObject.GetComponent<Rigidbody>();

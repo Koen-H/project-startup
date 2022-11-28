@@ -8,9 +8,12 @@ using static UnityEngine.LightAnchor;
 public class PushAbility : MonoBehaviour
 {
 
+    [Header("Changable")]
+    [SerializeField] float force = 500f;
+
+    [Header("Setup")]
     //Write automatic getter
     [SerializeField] GameObject parent;
-    [SerializeField] float force = 500f;
     Movement bumpPlayer;
 
     Vector3 bumpDirection;
