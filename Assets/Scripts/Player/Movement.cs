@@ -14,10 +14,11 @@ public class Movement : MonoBehaviour
     [SerializeField] float STANDARD_SPEED = 25f;
     [SerializeField] float JUMP_FORCE = 30f;
     [SerializeField] float EXTRA_GRAVITY = 30f;
+    [SerializeField] float FLIPPED_CONTROLLS_DURATION = 6; 
 
-
-
-
+    bool flippedControlls;
+    int flippedControllsValue = 1;
+    float flippedTime; 
 
     Vector3 movement = Vector3.zero;
     Vector2 movement2d = Vector2.zero;
@@ -40,8 +41,8 @@ public class Movement : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
-        movement2d = context.ReadValue<Vector2>();
-
+        if (grounded) movement2d = context.ReadValue<Vector2>();
+        
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -67,7 +68,7 @@ public class Movement : MonoBehaviour
             movement.y = JUMP_FORCE;
         }
 
-        transform.Rotate(0, look2d.x * rotationSensitivity, 0);
+        transform.Rotate(0, look2d.x * rotationSensitivity * flippedControllsValue, 0);
 
         Rotation();
 
@@ -75,14 +76,32 @@ public class Movement : MonoBehaviour
 
     }
 
+    public void FlipControlls()
+    {
+        if (flippedControlls) return;
+        flippedControlls = true;
+        flippedControllsValue = -1; 
+
+    }
+    void FlippedTimer()
+    {
+        flippedTime += Time.deltaTime; 
+        if(flippedTime > FLIPPED_CONTROLLS_DURATION)
+        {
+            flippedTime = 0;
+            flippedControlls = false;
+            flippedControllsValue = 1; 
+        }
+    }
 
     private void FixedUpdate()
     {
-        movement = new Vector3(movement2d.x, movement.y, movement2d.y);
+        movement = new Vector3(movement2d.x * flippedControllsValue, movement.y, movement2d.y * flippedControllsValue);
 
         ExtraGravity(EXTRA_GRAVITY);
 
         rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
+        if(flippedControlls) FlippedTimer();
 
         movement = Vector3.zero;
         //movement2d = Vector2.zero;
