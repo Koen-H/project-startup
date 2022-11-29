@@ -54,7 +54,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out RaycastHit hit, float.MaxValue,placeAbleLayer))
         {
-            Debug.Log("Ray hit !! ");
+          //  Debug.Log("Ray hit !! ");
             placePoint = hit.point;
          //   Debug.Log(placePoint);
             placeBlock.transform.position = placePoint;
