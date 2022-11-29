@@ -7,13 +7,15 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-  //  [Space(10)]
+    //  [Space(10)]
     [Header("Changable")]
     float speed = 50f;
-    [SerializeField] float rotationSensitivity = 1f; 
+    [SerializeField] float rotationSensitivity = 1f;
     [SerializeField] float STANDARD_SPEED = 25f;
     [SerializeField] float JUMP_FORCE = 30f;
-    [SerializeField] float EXTRA_GRAVITY = 30f; 
+    [SerializeField] float EXTRA_GRAVITY = 30f;
+
+
 
 
 
@@ -21,18 +23,25 @@ public class Movement : MonoBehaviour
     Vector2 movement2d = Vector2.zero;
     Vector2 look2d = Vector2.zero;
     bool jumped = false;
-  //  [Space(10)]
+    //  [Space(10)]
     [Header("Setup")]
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
 
-    bool grounded; 
+    bool grounded;
 
 
+
+    private void Start()
+    {
+        SetStandardSpeed();
+
+
+    }
     public void Move(InputAction.CallbackContext context)
     {
         movement2d = context.ReadValue<Vector2>();
-        
+
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -66,6 +75,7 @@ public class Movement : MonoBehaviour
 
     }
 
+
     private void FixedUpdate()
     {
         movement = new Vector3(movement2d.x, movement.y, movement2d.y);
@@ -76,6 +86,13 @@ public class Movement : MonoBehaviour
 
         movement = Vector3.zero;
         //movement2d = Vector2.zero;
+    }
+
+    public void SlowDownSpeed(float factor)
+    {
+        speed /= factor;
+
+        Debug.Log("Speed is : " + speed + " factor of : " + factor); 
     }
 
     public void SetPlayerSpeed(float value)
