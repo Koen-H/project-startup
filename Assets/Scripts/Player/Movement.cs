@@ -80,12 +80,13 @@ public class Movement : MonoBehaviour
             //  float angle = Vector3.Angle(Vector3.forward, movement3dAngle);
            // Vector3 test = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
            // if (test == Vector3.zero) test = Vector3.forward;
+        //    angle = Vector3.Angle(Vector3.forward, movement3dAngle);
             angle = Vector3.Angle(Vector3.forward, movement3dAngle);
             if (movement2d.x < 0) angle *= -1f;
 
-            to = Quaternion.AngleAxis(angle, Vector3.up);
+           // to = Quaternion.AngleAxis(angle, Vector3.up);
          //   angle = angle / Vector3.Distance(from.eulerAngles, to.eulerAngles);
-            to = Quaternion.AngleAxis(angle, Vector3.up);
+            to = Quaternion.AngleAxis(angle, transform.up);
 
        //     Debug.Log(angle);
             //  angle *= Mathf.Rad2Deg;
@@ -114,36 +115,38 @@ public class Movement : MonoBehaviour
 
         Vector3 direction = new Vector3(Mathf.Cos(elevation) * Mathf.Sin(heading), Mathf.Sin(elevation), Mathf.Cos(elevation) * Mathf.Cos(heading));
 
+        float size = Vector3.Dot(movements, direction);
         // float size = Vector3.Dot(movements, direction);
         movements = rotation * movements;
         
         movements.Normalize();
-        float size = Vector3.Dot(movements, direction);
         if (size > 0)
         {
-            Debug.Log(movements);
+          //  Debug.Log(movements);
          //   Debug.Log(direction);
-         //   Debug.Log(size);
+            Debug.Log(size);
         }
         
 
-        Vector3 vec3 = new Vector3(movement2d.x, 0, movement2d.y);
+        Vector3 vec3 = new Vector3(-movement2d.x, 0, movement2d.y);
       //  Vector3 vec3 = Vector3.forward;
-      //  vec3 = rotation * vec3;
+        vec3 = rotation * vec3;
         Debug.Log(vec3);
         vec3.Normalize();
-       // movement2d = vec3;
+        movement2d = new Vector2(vec3.x, vec3.z);
         //  float sizeforward = Vector3.Dot(Vector3.forward, movements);
 
         // movement2d = transform.forward;
 
 
         //movements.Normalize();
+        // Debug.Log(movement2d);
+        if (size < 0) size = 0;
         movement2d *= size;
        // Mathf.Abs(movement2d);
         
 
-        movement2d = Vector2.zero;
+     //   movement2d = Vector2.zero;
 
     }
 
