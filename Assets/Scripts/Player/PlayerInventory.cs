@@ -17,9 +17,13 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-    public void Switch(InputAction.CallbackContext context)
+    public void SwitchNextItem(InputAction.CallbackContext context)
     {
         NextItem();
+    }
+    public void SwitchPreviousItem(InputAction.CallbackContext context)
+    {
+        PreviousItem();
     }
 
 
@@ -28,9 +32,20 @@ public class PlayerInventory : MonoBehaviour
     {
         currentBlockIndex++;
         if (currentBlockIndex > playerStorage.Count + 1) currentBlockIndex = 0;
+        BlockPlacing();
+
+    }
+
+    void PreviousItem() {
+        currentBlockIndex--;
+        if (currentBlockIndex < 0) currentBlockIndex = playerStorage.Count - 1;
+        Debug.Log(currentBlockIndex);
+        BlockPlacing();
+    }
+
+    void BlockPlacing() {
         place.hologramPrefab = playerStorage[currentBlockIndex];
         place.blockPrefab = playerStorage[currentBlockIndex];
         place.InstantiateHologram();
-
     }
 }
