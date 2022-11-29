@@ -92,7 +92,7 @@ public class Movement : MonoBehaviour
     {
   
         //transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
-        look2d = context.ReadValue<Vector2>();
+        // look2d = context.ReadValue<Vector2>();
 
     }
     void Rotation()

@@ -292,8 +292,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b15ff31be786344bae1985cc5ce6ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPoints: []
-  playerLayers: []
+  players: []
+  startingPoints:
+  - {fileID: 1749064543}
+  - {fileID: 1749064543}
+  playerLayers:
+  - serializedVersion: 2
+    m_Bits: 16777216
+  - serializedVersion: 2
+    m_Bits: 33554432
+  - serializedVersion: 2
+    m_Bits: 67108864
+  - serializedVersion: 2
+    m_Bits: 134217728
+  - serializedVersion: 2
+    m_Bits: 268435456
+  - serializedVersion: 2
+    m_Bits: 536870912
+  - serializedVersion: 2
+    m_Bits: 1073741824
+  - serializedVersion: 2
+    m_Bits: 2147483648
+  playerInputManager: {fileID: 0}
 --- !u!1 &595105172
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +943,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4122742546058922632, guid: 20e9a48384566f545bc68e03db257c68,
+        type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4122742546058922642, guid: 20e9a48384566f545bc68e03db257c68,
         type: 3}
       propertyPath: m_Name
