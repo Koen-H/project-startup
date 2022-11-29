@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class SnakeEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,13 +16,14 @@ public class CheckPoint : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
         //6 is the player layer
         if (other.gameObject.layer == 6)
         {
+            other.gameObject.GetComponentInChildren<Movement>().FlipControlls();
 
-            other.gameObject.GetComponentInChildren<PlayerSpawnLogic>().currentCheckPoint = this.gameObject.GetComponent<CheckPoint>(); //Setting Checkpoint
+
         }
     }
 }

@@ -20,19 +20,23 @@ public class PlayerSprint : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
 
-        movement.SetStandardSpeed();
-        if (sprintAmount > 0 && Input.GetKey(KeyCode.LeftShift))
-        {
-            sprintAmount -= DRAIN_SPRINT_AMOUNT * Time.deltaTime;
-            movement.SetPlayerSpeed(movement.GetStandardSpeed() * SPRINT_MODIFIER);
 
-        } else if (sprintAmount < MAX_SPRINT_AMOUNT)
-        {
-            sprintAmount += REGEN_SPRINT_AMOUNT * Time.deltaTime;
-        }
+        // NOT BEING USED ! 
+        /*       
+                movement.SetStandardSpeed();
+                if (sprintAmount > 0 && Input.GetKey(KeyCode.LeftShift))
+                {
+                    sprintAmount -= DRAIN_SPRINT_AMOUNT * Time.deltaTime;
+                    movement.SetPlayerSpeed(movement.GetStandardSpeed() * SPRINT_MODIFIER);
 
-        Debug.Log("SprintAmount: " + sprintAmount);
+                } else if (sprintAmount < MAX_SPRINT_AMOUNT)
+                {
+                    sprintAmount += REGEN_SPRINT_AMOUNT * Time.deltaTime;
+                }
+
+                Debug.Log("SprintAmount: " + sprintAmount);
+        */
     }
 }

@@ -7,29 +7,43 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-  //  [Space(10)]
+    //  [Space(10)]
     [Header("Changable")]
     float speed = 50f;
-    [SerializeField] float rotationSensitivity = 1f; 
+    [SerializeField] float rotationSensitivity = 1f;
     [SerializeField] float STANDARD_SPEED = 25f;
     [SerializeField] float JUMP_FORCE = 30f;
+    [SerializeField] float EXTRA_GRAVITY = 30f;
+    [SerializeField] float FLIPPED_CONTROLLS_DURATION = 6; 
 
     [SerializeField] GameObject cameraObj;
 
+    bool flippedControlls;
+    int flippedControllsValue = 1;
+    float flippedTime; 
 
     Vector3 movement = Vector3.zero;
     Vector2 movement2d = Vector2.zero;
     Vector2 look2d = Vector2.zero;
     bool jumped = false;
-  //  [Space(10)]
+    //  [Space(10)]
     [Header("Setup")]
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
 
+    bool grounded;
 
+
+
+    private void Start()
+    {
+        SetStandardSpeed();
+
+
+    }
     public void Move(InputAction.CallbackContext context)
     {
-        movement2d = context.ReadValue<Vector2>();
+        if (grounded) movement2d = context.ReadValue<Vector2>();
         
     }
     public void Jump(InputAction.CallbackContext context)
@@ -50,12 +64,13 @@ public class Movement : MonoBehaviour
         Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down);
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
-        if (jumped && Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer))
+        grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+        if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
         }
 
-        transform.Rotate(0, look2d.x * rotationSensitivity, 0);
+        transform.Rotate(0, look2d.x * rotationSensitivity * flippedControllsValue, 0);
 
         Rotation();
 
@@ -63,14 +78,42 @@ public class Movement : MonoBehaviour
 
     }
 
+    public void FlipControlls()
+    {
+        if (flippedControlls) return;
+        flippedControlls = true;
+        flippedControllsValue = -1; 
+
+    }
+    void FlippedTimer()
+    {
+        flippedTime += Time.deltaTime; 
+        if(flippedTime > FLIPPED_CONTROLLS_DURATION)
+        {
+            flippedTime = 0;
+            flippedControlls = false;
+            flippedControllsValue = 1; 
+        }
+    }
+
     private void FixedUpdate()
     {
-        movement = new Vector3(movement2d.x, movement.y, movement2d.y);
+        movement = new Vector3(movement2d.x * flippedControllsValue, movement.y, movement2d.y * flippedControllsValue);
+
+        ExtraGravity(EXTRA_GRAVITY);
 
         rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
+        if(flippedControlls) FlippedTimer();
 
         movement = Vector3.zero;
         //movement2d = Vector2.zero;
+    }
+
+    public void SlowDownSpeed(float factor)
+    {
+        speed /= factor;
+
+        Debug.Log("Speed is : " + speed + " factor of : " + factor); 
     }
 
     public void SetPlayerSpeed(float value)
@@ -98,6 +141,14 @@ public class Movement : MonoBehaviour
     void Rotation()
     {
     //    transform.Rotate(0, Input.GetAxisRaw("Mouse X") * rotationSensitivity, 0);
+    }
+
+    void ExtraGravity(float _gravity)
+    {
+        if (!grounded)
+        {
+            movement.y -= _gravity; 
+        }
     }
 
 
