@@ -11,6 +11,8 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] float DASH_DURATION = 1;
     [SerializeField] float DASH_COOLDOWN = 4;
     [SerializeField] float DASH_STRENGTH = 1000;
+
+    float dashTimer;
     bool dashReady = true;
     bool isDashing = false;
 
@@ -21,6 +23,8 @@ public class PlayerDash : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject parent;
     Movement bumpPlayer;
+
+    [SerializeField]PlayerSpawnLogic spawnLogic;
 
     Vector3 bumpDirection;
 
@@ -33,11 +37,22 @@ public class PlayerDash : MonoBehaviour
     void Update()
     {
         if (isDashing) CheckBounce();
+
+        if (spawnLogic.dead)
+        {
+            dashTimer = 0;
+            isDashing = false;
+            dashReady = true;
+            spawnLogic.dead = false;
+        }
+
+
+
     }
 
     private void FixedUpdate()
     {
-
+        if (isDashing) Dashing(); 
 
         if (bumpPlayer != null && INCLUDE_PUSH)
         {
@@ -59,9 +74,9 @@ public class PlayerDash : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && dashReady)
+        if (context.action.triggered && dashReady && !isDashing)
         {
-            StartCoroutine(Dashing());
+            isDashing = true;      
         }
 
     }
@@ -90,16 +105,21 @@ public class PlayerDash : MonoBehaviour
 
         }
     }
-
-    private IEnumerator Dashing()
+    
+    void Dashing()
     {
         dashReady = false;
+        dashTimer += Time.fixedDeltaTime; 
+        if (dashTimer > DASH_COOLDOWN)
+        {
+            isDashing = false;
+            dashReady = true;
+            dashTimer = 0;
+            return;
+        }
+
+
+        if (dashTimer > DASH_DURATION) return;
         transform.parent.GetComponent<Rigidbody>().AddForce(this.transform.forward * DASH_STRENGTH);
-        Debug.Log("DASH");
-        isDashing = true;
-        yield return new WaitForSeconds(DASH_DURATION);
-        isDashing = false;
-        yield return new WaitForSeconds(DASH_COOLDOWN);
-        dashReady = true;
     }
 }

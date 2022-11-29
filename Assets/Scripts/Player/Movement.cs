@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationSensitivity = 1f; 
     [SerializeField] float STANDARD_SPEED = 25f;
     [SerializeField] float JUMP_FORCE = 30f;
+    [SerializeField] float EXTRA_GRAVITY = 30f; 
+
 
 
     Vector3 movement = Vector3.zero;
@@ -23,6 +25,8 @@ public class Movement : MonoBehaviour
     [Header("Setup")]
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
+
+    bool grounded; 
 
 
     public void Move(InputAction.CallbackContext context)
@@ -48,7 +52,8 @@ public class Movement : MonoBehaviour
         Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down);
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
-        if (jumped && Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer))
+        grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+        if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
         }
@@ -64,6 +69,8 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         movement = new Vector3(movement2d.x, movement.y, movement2d.y);
+
+        ExtraGravity(EXTRA_GRAVITY);
 
         rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
 
@@ -96,6 +103,14 @@ public class Movement : MonoBehaviour
     void Rotation()
     {
     //    transform.Rotate(0, Input.GetAxisRaw("Mouse X") * rotationSensitivity, 0);
+    }
+
+    void ExtraGravity(float _gravity)
+    {
+        if (!grounded)
+        {
+            movement.y -= _gravity; 
+        }
     }
 
 

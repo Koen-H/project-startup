@@ -7,6 +7,8 @@ public class PlayerSpawnLogic : MonoBehaviour
     public CheckPoint currentCheckPoint;
     [SerializeField] GameObject playerMesh;
     [SerializeField] GameObject parent;
+
+    [SerializeField] public bool dead = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class PlayerSpawnLogic : MonoBehaviour
         playerMovementScript.enabled = true;
         playerMovementScript.rigidBody.velocity = Vector3.zero;
         SpawnPlayer();
+        //StopCoroutine(playerDash.Dashing()); 
+        dead = true;
 
         // Rest any health or ability attributes
     }

@@ -99,12 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3bc14d83bf4ec43b1f5675e29abd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DASH_DURATION: 1
+  DASH_DURATION: 0.1
   DASH_COOLDOWN: 4
   DASH_STRENGTH: 1000
   INCLUDE_PUSH: 1
   force: 500
   parent: {fileID: 5481577643495235206}
+  spawnLogic: {fileID: 7337059579244953656}
 --- !u!114 &7337059579244953656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +121,7 @@ MonoBehaviour:
   currentCheckPoint: {fileID: 0}
   playerMesh: {fileID: 5481577643495235206}
   parent: {fileID: 5481577643495235206}
+  dead: 0
 --- !u!114 &2878382427220880065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSensitivity: 1
   STANDARD_SPEED: 250
-  JUMP_FORCE: 30
+  JUMP_FORCE: 40
+  EXTRA_GRAVITY: 2
   rigidBody: {fileID: 5481577643495235201}
   groundLayer:
     serializedVersion: 2
