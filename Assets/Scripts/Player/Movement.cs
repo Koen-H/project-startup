@@ -48,6 +48,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        movement2d = Vector2.zero;
         movement2d.x += Input.GetAxis("Horizontal");
         movement2d.y += Input.GetAxis("Vertical");
 
@@ -78,27 +79,38 @@ public class Movement : MonoBehaviour
             // float angle = Mathf.Asin(movement2d.y);
             // float angle = Mathf.Atan(movement2d.y / movement2d.x);
             //  float angle = Vector3.Angle(Vector3.forward, movement3dAngle);
-           // Vector3 test = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
-           // if (test == Vector3.zero) test = Vector3.forward;
-        //    angle = Vector3.Angle(Vector3.forward, movement3dAngle);
+            // Vector3 test = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
+            // if (test == Vector3.zero) test = Vector3.forward;
+            //    angle = Vector3.Angle(Vector3.forward, movement3dAngle);
+            //  angle = Vector3.Angle(Vector3.forward, movement3dAngle);
             angle = Vector3.Angle(Vector3.forward, movement3dAngle);
+
+          //  float angleQuat = Quaternion.Angle(Quaternion.identity, from);
             if (movement2d.x < 0) angle *= -1f;
 
-           // to = Quaternion.AngleAxis(angle, Vector3.up);
-         //   angle = angle / Vector3.Distance(from.eulerAngles, to.eulerAngles);
+            // to = Quaternion.AngleAxis(angle, Vector3.up);
+            //   angle = angle / Vector3.Distance(from.eulerAngles, to.eulerAngles);
             to = Quaternion.AngleAxis(angle, transform.up);
 
-       //     Debug.Log(angle);
+            angle = Mathf.Clamp(angle, 0, 2);
+            Quaternion middlePoint = Quaternion.AngleAxis(angle, transform.up);
+         //   to = 
+            //     Debug.Log(angle);
             //  angle *= Mathf.Rad2Deg;
-           // to.Normalize();
+            // to.Normalize();
         }
 
         time += Time.deltaTime / Vector3.Distance(from.eulerAngles, to.eulerAngles);
         if (time > 1) time = 0;
-        Quaternion rotation = Quaternion.Slerp(from, to, time);
+        Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
+        float dAngle = (Quaternion.Angle(from, to));
+        dAngle = Mathf.Clamp(dAngle, -2, 2);
 
-     //   Debug.Log(rotation);
-             transform.rotation = rotation;
+        Quaternion change = Quaternion.AngleAxis(dAngle, transform.up);
+        Debug.Log(dAngle);
+        //   Debug.Log(rotation);
+        if (dAngle < 1 && Input.anyKey) transform.rotation = to;
+        else transform.rotation *= change;
       //  transform.rotation = to;
         //Movement based on rotation
         Vector3 velocity = rigidBody.velocity;
@@ -124,14 +136,14 @@ public class Movement : MonoBehaviour
         {
           //  Debug.Log(movements);
          //   Debug.Log(direction);
-            Debug.Log(size);
+         //   Debug.Log(size);
         }
         
 
         Vector3 vec3 = new Vector3(-movement2d.x, 0, movement2d.y);
       //  Vector3 vec3 = Vector3.forward;
         vec3 = rotation * vec3;
-        Debug.Log(vec3);
+      //  Debug.Log(vec3);
         vec3.Normalize();
         movement2d = new Vector2(vec3.x, vec3.z);
         //  float sizeforward = Vector3.Dot(Vector3.forward, movements);
@@ -143,10 +155,10 @@ public class Movement : MonoBehaviour
         // Debug.Log(movement2d);
         if (size < 0) size = 0;
         movement2d *= size;
-       // Mathf.Abs(movement2d);
-        
+        // Mathf.Abs(movement2d);
+      //  movement2d *= -0.05f;
 
-     //   movement2d = Vector2.zero;
+       // movement2d = Vector2.zero;
 
     }
 
