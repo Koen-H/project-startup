@@ -5,6 +5,7 @@ using System.Data;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -31,11 +32,14 @@ public class Movement : MonoBehaviour
     public Rigidbody rigidBody;
     [SerializeField] LayerMask groundLayer;
 
+    Vector2 moving;
+
 
     public void Move(InputAction.CallbackContext context)
     {
-        movement2d = context.ReadValue<Vector2>();
-        
+       
+      //  movement2d = context.ReadValue<Vector2>();
+        moving  = context.ReadValue<Vector2>();
     }
     public void Jump(InputAction.CallbackContext context)
     {
@@ -49,11 +53,12 @@ public class Movement : MonoBehaviour
     void Update()
     {
         movement2d = Vector2.zero;
-        movement2d.x += Input.GetAxis("Horizontal");
-        movement2d.y += Input.GetAxis("Vertical");
+        movement2d = moving;
+     //   movement2d.x += Input.GetAxis("Horizontal");
+     //  movement2d.y += Input.GetAxis("Vertical");
 
         movement2d.Normalize();
-
+     //   Debug.Log(movement2d);
         Vector3 playerPosition = this.transform.position;
         Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down);
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
@@ -74,7 +79,7 @@ public class Movement : MonoBehaviour
 
         Vector3 movement3dAngle = new Vector3(movement2d.x, 0, movement2d.y);
         Quaternion from = transform.rotation;
-        if (Input.anyKey)
+        if (movement2d != Vector2.zero)
         {
             // float angle = Mathf.Asin(movement2d.y);
             // float angle = Mathf.Atan(movement2d.y / movement2d.x);
@@ -84,6 +89,7 @@ public class Movement : MonoBehaviour
             //    angle = Vector3.Angle(Vector3.forward, movement3dAngle);
             //  angle = Vector3.Angle(Vector3.forward, movement3dAngle);
             angle = Vector3.Angle(Vector3.forward, movement3dAngle);
+         //   Debug.Log(angle);
 
           //  float angleQuat = Quaternion.Angle(Quaternion.identity, from);
             if (movement2d.x < 0) angle *= -1f;
@@ -91,6 +97,7 @@ public class Movement : MonoBehaviour
             // to = Quaternion.AngleAxis(angle, Vector3.up);
             //   angle = angle / Vector3.Distance(from.eulerAngles, to.eulerAngles);
             to = Quaternion.AngleAxis(angle, transform.up);
+          //  Debug.Log(to);
 
             angle = Mathf.Clamp(angle, 0, 2);
             Quaternion middlePoint = Quaternion.AngleAxis(angle, transform.up);
@@ -100,16 +107,34 @@ public class Movement : MonoBehaviour
             // to.Normalize();
         }
 
-        time += Time.deltaTime / Vector3.Distance(from.eulerAngles, to.eulerAngles);
-        if (time > 1) time = 0;
+     //   time += Time.deltaTime / Vector3.Distance(from.eulerAngles, to.eulerAngles);
+    //    if (time > 1) time = 0;
         Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
         float dAngle = (Quaternion.Angle(from, to));
-        dAngle = Mathf.Clamp(dAngle, -2, 2);
 
-        Quaternion change = Quaternion.AngleAxis(dAngle, transform.up);
         Debug.Log(dAngle);
+        float fromAngle = Quaternion.Angle(Quaternion.identity, from);
+        float toAngle = Quaternion.Angle(Quaternion.identity, to);
+
+        // if (from.y < to.y) dAngle *= -1f;
+        // if (from.y * to.y < 0) dAngle *= -1f; 
+        //Debug.Log(dAngle);
+        // Debug.Log(fromAngle);
+        // Debug.Log(toAngle);
+         // if (dAngle >= 179 && (from.y * to.y < 0)) dAngle *= -1f;
+    //    if (from.y * to.y < 0) dAngle *= -1f;
+        if (from.y - to.y > 0) dAngle *= -1f;
+
+   //     if (from.y - to.y > 0 && from.y * to.y < 0) dAngle *= -1f;
+
+        //if (fromAngle > toAngle && (from.y * to.y < 0)) dAngle *= -1f;
+        float dAngleClamped = Mathf.Clamp(dAngle, -2, 2);
+
+        Quaternion change = Quaternion.AngleAxis(dAngleClamped, transform.up);
+
+
         //   Debug.Log(rotation);
-        if (dAngle < 1 && Input.anyKey) transform.rotation = to;
+        if (dAngle <= 2 && Input.anyKey) transform.rotation = to;
         else transform.rotation *= change;
       //  transform.rotation = to;
         //Movement based on rotation
@@ -129,7 +154,7 @@ public class Movement : MonoBehaviour
 
         float size = Vector3.Dot(movements, direction);
         // float size = Vector3.Dot(movements, direction);
-        movements = rotation * movements;
+        movements = transform.rotation * movements;
         
         movements.Normalize();
         if (size > 0)
@@ -142,7 +167,7 @@ public class Movement : MonoBehaviour
 
         Vector3 vec3 = new Vector3(-movement2d.x, 0, movement2d.y);
       //  Vector3 vec3 = Vector3.forward;
-        vec3 = rotation * vec3;
+        vec3 = transform.rotation * vec3;
       //  Debug.Log(vec3);
         vec3.Normalize();
         movement2d = new Vector2(vec3.x, vec3.z);
@@ -171,7 +196,7 @@ public class Movement : MonoBehaviour
         rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
 
         movement = Vector3.zero;
-        movement2d = Vector2.zero;
+     //   movement2d = Vector2.zero;
 
         
     }
