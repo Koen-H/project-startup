@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Transactions;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.UI;
 
@@ -40,15 +42,21 @@ public class Movement : MonoBehaviour
     bool grounded;
     Vector2 moving;
 
-
+    bool started = false;
 
 
     private void Start()
     {
         SetStandardSpeed();
 
-
+        StartTimer.Instance.OnGameStart += GameStart;
     }
+
+    private void GameStart(object sender, EventArgs e)
+    {
+        started = true;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         if (grounded) movement2d = context.ReadValue<Vector2>();
@@ -225,6 +233,8 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!started) return;
+
         movement = new Vector3(movement2d.x * flippedControllsValue, movement.y, movement2d.y * flippedControllsValue);
 
         ExtraGravity(EXTRA_GRAVITY);
