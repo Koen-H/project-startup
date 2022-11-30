@@ -18,6 +18,8 @@ public class PlayerDash : MonoBehaviour
 
     [Header("Push (Changable)")]
     [SerializeField] bool INCLUDE_PUSH = true;
+    [SerializeField] bool CONSTANT_PUSH = false;
+    [SerializeField] bool NO_DASH = false;
     [SerializeField] float force = 500f;
 
     [Header("Setup")]
@@ -36,7 +38,7 @@ public class PlayerDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDashing) CheckBounce();
+        if (isDashing || CONSTANT_PUSH) CheckBounce();
 
         if (spawnLogic.dead)
         {
@@ -62,10 +64,7 @@ public class PlayerDash : MonoBehaviour
             //No up bumping allowed
             bumpDirection.y = 0;
             bumpDirection.Normalize();
-            Debug.Log(bumpDirection);
-            Debug.Log(Time.deltaTime * force);
             bumpDirection *= (Time.deltaTime * force);
-            Debug.Log(bumpDirection);
             bumpPlayerRigidBody.AddForce(bumpDirection, ForceMode.Impulse);
 
             bumpPlayer = null;
@@ -74,6 +73,7 @@ public class PlayerDash : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
+        if (NO_DASH) return;
         if (context.action.triggered && dashReady && !isDashing)
         {
             isDashing = true;      

@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float EXTRA_GRAVITY = 30f;
     [SerializeField] float FLIPPED_CONTROLLS_DURATION = 6; 
 
+    [SerializeField] GameObject cameraObj;
+
     bool flippedControlls;
     int flippedControllsValue = 1;
     float flippedTime; 
@@ -47,6 +49,7 @@ public class Movement : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         jumped = context.action.triggered;
+        Debug.Log("jumped");
 
     }
 
@@ -59,10 +62,10 @@ public class Movement : MonoBehaviour
         movement2d.Normalize();
 
         Vector3 playerPosition = this.transform.position;
-        Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down);
+        Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down);
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
-        grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y - 0.9f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+        grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
         if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
@@ -133,7 +136,7 @@ public class Movement : MonoBehaviour
     {
   
         //transform.Rotate(0, context.ReadValue<Vector2>().x * rotationSensitivity, 0);
-        look2d = context.ReadValue<Vector2>();
+        // look2d = context.ReadValue<Vector2>();
 
     }
     void Rotation()
