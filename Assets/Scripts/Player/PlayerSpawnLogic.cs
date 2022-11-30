@@ -7,6 +7,16 @@ public class PlayerSpawnLogic : MonoBehaviour
     public CheckPoint currentCheckPoint;
     [SerializeField] GameObject playerMesh;
     [SerializeField] GameObject parent;
+    [SerializeField] float SPAWN_PROTECTION_DURATION;
+    bool spawnProtection = false;
+    float spawnProtectionTimer;
+    float hologramAlphaValue;
+    [SerializeField] float flickerFrequency;
+    [SerializeField] Material flickerMat;
+    [SerializeField] Material defaultMat;
+    [SerializeField] MeshRenderer meshRenderer;
+
+
 
     [SerializeField] public bool dead = false; 
     // Start is called before the first frame update
@@ -25,6 +35,13 @@ public class PlayerSpawnLogic : MonoBehaviour
         //StopCoroutine(playerDash.Dashing()); 
         dead = true;
 
+        
+
+        spawnProtection = true;
+        meshRenderer.material = flickerMat;
+
+
+
         // Rest any health or ability attributes
     }
 
@@ -35,9 +52,27 @@ public class PlayerSpawnLogic : MonoBehaviour
         playerMesh.SetActive(true);
     }
 
+    void SpawnProtection()
+    {
+        spawnProtectionTimer += Time.deltaTime;
+        hologramAlphaValue = 0.4f * Mathf.Cos(spawnProtectionTimer * flickerFrequency) + 0.6f;
+        flickerMat.SetFloat("_Alpha", hologramAlphaValue);
+       
+        if(spawnProtectionTimer > SPAWN_PROTECTION_DURATION)
+        {
+            spawnProtectionTimer = 0;
+            flickerMat.SetFloat("_Alpha", 1);
+            spawnProtection = false;
+            meshRenderer.material = defaultMat; 
+
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) SpawnPlayer(); 
+        if (Input.GetKeyDown(KeyCode.R)) SpawnPlayer();
+        if(spawnProtection) SpawnProtection();
     }
 }
