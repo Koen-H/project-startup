@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class KillObject : MonoBehaviour
 {
-
+    float y = 0; 
 
 
     // Start is called before the first frame update
@@ -17,7 +17,8 @@ public class KillObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+
     }
 
     private void OnTriggerEnter(Collider other)
