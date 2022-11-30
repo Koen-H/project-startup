@@ -6,12 +6,12 @@ public class PlayerSpawnLogic : MonoBehaviour
 {
     public CheckPoint currentCheckPoint;
     [SerializeField] GameObject playerMesh;
-    [SerializeField] GameObject parent;
-    [SerializeField] float SPAWN_PROTECTION_DURATION;
+    GameObject parent;
+    [SerializeField] float SPAWN_PROTECTION_DURATION = 4;
     bool spawnProtection = false;
     float spawnProtectionTimer;
     float hologramAlphaValue;
-    [SerializeField] float flickerFrequency;
+    [SerializeField] float flickerFrequency = 10;
     [SerializeField] Material flickerMat;
     [SerializeField] Material defaultMat;
     [SerializeField] MeshRenderer meshRenderer;
@@ -23,6 +23,7 @@ public class PlayerSpawnLogic : MonoBehaviour
     void Start()
     {
         currentCheckPoint = GameObject.FindObjectOfType<CheckPoint>();
+        parent = transform.parent.gameObject;
     }
 
     public void DespawnPlayer()

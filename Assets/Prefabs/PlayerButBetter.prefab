@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776060149467289186}
-  m_LocalRotation: {x: 0.018189516, y: -0.000000011175871, z: 0.000000004656613, w: 0.99983466}
-  m_LocalPosition: {x: 0.000000059328798, y: 0.000000002373544, z: 0.0000000052129514}
+  m_LocalRotation: {x: 0.018189516, y: 0.000000033527613, z: -0.000000014901161, w: 0.99983466}
+  m_LocalPosition: {x: -0.000000029664399, y: -0.0000000011867709, z: -0.0000000026064735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -358,8 +358,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3354649091729524373}
-  m_LocalRotation: {x: -0.010198751, y: 0.97613573, z: -0.21176651, w: -0.047011048}
-  m_LocalPosition: {x: 0.48048902, y: 3.5, z: 4.97686}
+  m_LocalRotation: {x: -0.010198742, y: 0.97613573, z: -0.21176651, w: -0.047011003}
+  m_LocalPosition: {x: 0.48048896, y: 3.5, z: 4.97686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -636,7 +636,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4260754346451257473}
-  m_LocalRotation: {x: -0.01814145, y: -0.000000014901159, z: 0.000000008381902, w: 0.99983543}
+  m_LocalRotation: {x: -0.01814145, y: 0.000000026077029, z: -0.0000000074505797,
+    w: 0.99983543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1126,7 +1127,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7560779465388353276}
-  m_LocalRotation: {x: 0.000000014930263, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.000000014959367, y: 0.000000014901159, z: -0.0000000074505797,
+    w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1192,7 +1194,7 @@ GameObject:
   - component: {fileID: 7731058572996793300}
   - component: {fileID: 7731058572996793299}
   m_Layer: 6
-  m_Name: Player (Splitscreen
+  m_Name: PlayerMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,7 +1387,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCheckPoint: {fileID: 0}
   playerMesh: {fileID: 7731058572996793298}
-  parent: {fileID: 7731058572996793298}
+  SPAWN_PROTECTION_DURATION: 4
+  flickerFrequency: 10
+  flickerMat: {fileID: 2100000, guid: d0ad0eb6934e3f94b905bb58d26de1ff, type: 2}
+  defaultMat: {fileID: 2100000, guid: d27f34eeacd289146a7f5f8e844e3ed1, type: 2}
+  meshRenderer: {fileID: 7731058572996793300}
   dead: 0
 --- !u!114 &47943707962238869
 MonoBehaviour:
