@@ -27,10 +27,6 @@ public class InputHandler : MonoBehaviour, AxisState.IInputAxisProvider
         return 0;
     }
 
-    public void Update()
-    {
-        Debug.Log(look);
-    }
 }
 
 

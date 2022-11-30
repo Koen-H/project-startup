@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776060149467289186}
-  m_LocalRotation: {x: 0.018189501, y: 0.000000029802322, z: -0.000000013038516, w: 0.99983466}
-  m_LocalPosition: {x: -0.000000059328798, y: -0.0000000023735423, z: -0.0000000052129474}
+  m_LocalRotation: {x: 0.018189516, y: -0.000000011175871, z: 0.000000004656613, w: 0.99983466}
+  m_LocalPosition: {x: 0.000000059328798, y: 0.000000002373544, z: 0.0000000052129514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -91,8 +91,7 @@ GameObject:
   - component: {fileID: 2835091956561323722}
   - component: {fileID: 2835091956561323723}
   - component: {fileID: 2835091956561323732}
-  - component: {fileID: 2835091956561323733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerButBetter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +146,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2835091956561323722}
         m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -162,19 +161,7 @@ MonoBehaviour:
     m_ActionId: 396a8f34-d9cf-4178-aabc-83c9ed860827
     m_ActionName: Player/Move[/DualShock4GamepadHID/leftStick,/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
-        m_MethodName: Look
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: a44b32b4-4cfb-47fa-9687-778191f953f7
     m_ActionName: Player/Look[/DualShock4GamepadHID/rightStick,/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
@@ -223,7 +210,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2835091956561323722}
         m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
@@ -271,7 +258,7 @@ MonoBehaviour:
     m_ActionName: Player/Place[/Mouse/rightButton,/DualShock4GamepadHID/rightTrigger,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2606165705706866495}
         m_TargetAssemblyTypeName: PlayerInventory, Assembly-CSharp
         m_MethodName: Switch
         m_Mode: 0
@@ -342,21 +329,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2835091956561323733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2835091956561323734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545c149f0d1b26d469fb1290fddcab67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  growthStrength: 3
-  growthSpeed: 4
-  growthDuration: 8
 --- !u!1 &3354649091729524373
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,8 +358,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3354649091729524373}
-  m_LocalRotation: {x: -0.01019875, y: 0.97613573, z: -0.21176651, w: -0.047011036}
-  m_LocalPosition: {x: 0.48048896, y: 3.5, z: 4.97686}
+  m_LocalRotation: {x: -0.010198751, y: 0.97613573, z: -0.21176651, w: -0.047011048}
+  m_LocalPosition: {x: 0.48048902, y: 3.5, z: 4.97686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -664,8 +636,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4260754346451257473}
-  m_LocalRotation: {x: -0.01814145, y: 0.000000026077029, z: -0.000000010244547, w: 0.99983543}
-  m_LocalPosition: {x: -0.000000059328798, y: -0.0000000023735423, z: -0.0000000052129474}
+  m_LocalRotation: {x: -0.01814145, y: -0.000000014901159, z: 0.000000008381902, w: 0.99983543}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1154,8 +1126,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7560779465388353276}
-  m_LocalRotation: {x: 0.000000014930263, y: 0.000000026077029, z: -0.00000001117587,
-    w: 1}
+  m_LocalRotation: {x: 0.000000014930263, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1307,6 +1278,7 @@ GameObject:
   - component: {fileID: 8123438492225785717}
   - component: {fileID: 4794712704112790892}
   - component: {fileID: 47943707962238869}
+  - component: {fileID: 2606165705706866495}
   m_Layer: 6
   m_Name: PlayerLogic
   m_TagString: Untagged
@@ -1394,6 +1366,8 @@ MonoBehaviour:
   DASH_COOLDOWN: 4
   DASH_STRENGTH: 1000
   INCLUDE_PUSH: 1
+  CONSTANT_PUSH: 1
+  NO_DASH: 1
   force: 500
   parent: {fileID: 7731058572996793298}
   spawnLogic: {fileID: 4794712704112790892}
@@ -1428,6 +1402,21 @@ MonoBehaviour:
   playerRidgidBody: {fileID: 2835091956561323732}
   PlayerCamera: {fileID: 229462322939289601}
   playerLayers: []
+--- !u!114 &2606165705706866495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731058573325977468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cdd041ec42d274e944ee9f3c1890da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStorage:
+  - {fileID: 933425644787404525, guid: 6501734134c1502448c3631bb3cd90ee, type: 3}
+  - {fileID: 8162159828577933158, guid: 20118a9d5d242cd47ad33c1a42695916, type: 3}
 --- !u!1 &8120899103646671110
 GameObject:
   m_ObjectHideFlags: 0
