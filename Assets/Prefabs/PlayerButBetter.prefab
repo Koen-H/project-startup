@@ -1386,6 +1386,11 @@ MonoBehaviour:
   currentCheckPoint: {fileID: 0}
   playerMesh: {fileID: 7731058572996793298}
   parent: {fileID: 7731058572996793298}
+  SPAWN_PROTECTION_DURATION: 0
+  flickerFrequency: 0
+  flickerMat: {fileID: 0}
+  defaultMat: {fileID: 0}
+  meshRenderer: {fileID: 0}
   dead: 0
 --- !u!114 &47943707962238869
 MonoBehaviour:

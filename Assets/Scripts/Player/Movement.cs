@@ -27,11 +27,16 @@ public class Movement : MonoBehaviour
     Quaternion to = Quaternion.identity;
 
     Vector3 movement = Vector3.zero;
+    float jumpmovement = 0;
     Vector2 movement2d = Vector2.zero;
     Vector2 look2d = Vector2.zero;
     bool jumped = false;
 
     float time = 0;
+
+
+    float jumpTimer = 0f;
+    float jumpMaxTime = .2f;
   //  [Space(10)]
     [Header("Setup")]
     public Rigidbody rigidBody;
@@ -51,19 +56,36 @@ public class Movement : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
-        if (grounded) movement2d = context.ReadValue<Vector2>();
-        
-       
-      //  movement2d = context.ReadValue<Vector2>();
-        moving  = context.ReadValue<Vector2>();
+        //if (grounded) movement2d = context.ReadValue<Vector2>();
+
+        Debug.Log("Moving");
+        //  movement2d = context.ReadValue<Vector2>();
+        if (grounded)  moving  = context.ReadValue<Vector2>();
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        jumped = context.action.triggered;
+        
+
+       if (context.started)
+        {
+            jumped = true;
+        }
+       if (context.performed)
+        {
+            jumped = true;
+        }
+       if (context.canceled)
+        {
+            jumped = false;
+        }
         Debug.Log("jumped");
 
     }
 
+    private void Action_performed(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }
 
     float angle = 0;
     // Update is called once per frame
@@ -84,8 +106,19 @@ public class Movement : MonoBehaviour
         if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
+          //  jumpmovement = JUMP_FORCE;
+            jumpTimer = jumpMaxTime;
         }
-
+        if (jumped)
+        {
+            if (jumpTimer > 0)
+            {
+                movement.y = JUMP_FORCE / 10;
+                jumpTimer -= Time.deltaTime;
+                Debug.Log("Jumping");
+            }
+        }
+     
         //  transform.Rotate(0, look2d.x * rotationSensitivity, 0);
 
         //  Rotation();
@@ -130,7 +163,7 @@ public class Movement : MonoBehaviour
         Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
         float dAngle = (Quaternion.Angle(from, to));
 
-        Debug.Log(dAngle);
+        //Debug.Log(dAngle);
         float fromAngle = Quaternion.Angle(Quaternion.identity, from);
         float toAngle = Quaternion.Angle(Quaternion.identity, to);
 
@@ -195,9 +228,9 @@ public class Movement : MonoBehaviour
 
 
         //movements.Normalize();
-        // Debug.Log(movement2d);
         if (size < 0) size = 0;
         movement2d *= size;
+      //   Debug.Log(movement2d);
         // Mathf.Abs(movement2d);
       //  movement2d *= -0.05f;
 
@@ -234,9 +267,12 @@ public class Movement : MonoBehaviour
         if(flippedControlls) FlippedTimer();
 
         movement = Vector3.zero;
-     //   movement2d = Vector2.zero;
+        // movement2d = Vector2.zero;
+        jumpmovement = 0;
+       // jumped = false;
 
-        
+
+
     }
 
     public void SlowDownSpeed(float factor)
