@@ -38,5 +38,6 @@ public class PlayerSprint : MonoBehaviour
 
                 Debug.Log("SprintAmount: " + sprintAmount);
         */
+    //    Debug.Log("SprintAmount: " + sprintAmount);
     }
 }
