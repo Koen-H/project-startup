@@ -1077,7 +1077,7 @@ Transform:
   m_Children:
   - {fileID: 953886418}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522700022
 GameObject:
@@ -3003,7 +3003,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5481577643495235206, guid: 190df5f053762d74087b881f9fdfa07a,
+  m_PlayerPrefab: {fileID: 2835091956561323734, guid: f951d67a511d7ba4c965a3716facba22,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
