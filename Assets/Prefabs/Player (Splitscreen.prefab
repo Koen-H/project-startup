@@ -844,6 +844,11 @@ MonoBehaviour:
   currentCheckPoint: {fileID: 0}
   playerMesh: {fileID: 5481577643495235206}
   parent: {fileID: 5481577643495235206}
+  SPAWN_PROTECTION_DURATION: 5
+  flickerFrequency: 10
+  flickerMat: {fileID: 2100000, guid: d0ad0eb6934e3f94b905bb58d26de1ff, type: 2}
+  defaultMat: {fileID: 2100000, guid: d27f34eeacd289146a7f5f8e844e3ed1, type: 2}
+  meshRenderer: {fileID: 5481577643495235200}
   dead: 0
 --- !u!114 &2878382427220880065
 MonoBehaviour:
@@ -1146,7 +1151,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d27f34eeacd289146a7f5f8e844e3ed1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
