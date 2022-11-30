@@ -60,7 +60,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         if (cooldownTimer > 0)
         {
-            Debug.Log(cooldownTimer);
+            // Debug.Log(cooldownTimer);
             cooldownTimer -= Time.deltaTime;
             placeBlock.transform.position = new Vector3(100, 100, 100);
             return;
@@ -88,7 +88,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     {
         if (cooldownTimer <= 0)
         {
-            Debug.Log("wdafaw");
+            // Debug.Log("wdafaw");
             GameObject objectPlaced = Instantiate(blockPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
             objectPlaced.SetActive(true);
             objectPlaced.layer = 3;
