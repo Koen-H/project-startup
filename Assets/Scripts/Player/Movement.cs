@@ -163,7 +163,7 @@ public class Movement : MonoBehaviour
         Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
         float dAngle = (Quaternion.Angle(from, to));
 
-        //Debug.Log(dAngle);
+       // Debug.Log(dAngle);
         float fromAngle = Quaternion.Angle(Quaternion.identity, from);
         float toAngle = Quaternion.Angle(Quaternion.identity, to);
 
@@ -172,21 +172,22 @@ public class Movement : MonoBehaviour
         //Debug.Log(dAngle);
         // Debug.Log(fromAngle);
         // Debug.Log(toAngle);
-         // if (dAngle >= 179 && (from.y * to.y < 0)) dAngle *= -1f;
-    //    if (from.y * to.y < 0) dAngle *= -1f;
-        if (from.y - to.y > 0) dAngle *= -1f;
+        // if (dAngle >= 179 && (from.y * to.y < 0)) dAngle *= -1f;
+        //    if (from.y * to.y < 0) dAngle *= -1f;
+        //  if (from.y - to.y > 0) dAngle *= -1f;
 
-   //     if (from.y - to.y > 0 && from.y * to.y < 0) dAngle *= -1f;
+        //     if (from.y - to.y > 0 && from.y * to.y < 0) dAngle *= -1f;
 
         //if (fromAngle > toAngle && (from.y * to.y < 0)) dAngle *= -1f;
-        float dAngleClamped = Mathf.Clamp(dAngle, -2, 2);
+        //   float dAngleClamped = Mathf.Clamp(dAngle, -2, 2);
 
-        Quaternion change = Quaternion.AngleAxis(dAngleClamped, transform.up);
+        //    Quaternion change = Quaternion.AngleAxis(dAngleClamped, transform.up);
 
 
         //   Debug.Log(rotation);
-        if (dAngle <= 2 && dAngle >= -2) transform.rotation = to;
-        else transform.rotation *= change;
+        Debug.Log(Mathf.Abs(transform.rotation.y - rotation.eulerAngles.y));
+        if (Mathf.Abs(transform.rotation.eulerAngles.y - rotation.eulerAngles.y) < .1f) transform.rotation = to;
+        else transform.rotation = rotation;
       //  transform.rotation = to;
         //Movement based on rotation
         Vector3 velocity = rigidBody.velocity;
@@ -234,7 +235,7 @@ public class Movement : MonoBehaviour
         // Mathf.Abs(movement2d);
       //  movement2d *= -0.05f;
 
-       // movement2d = Vector2.zero;
+      //  movement2d = Vector2.zero;
 
     }
 
@@ -267,6 +268,7 @@ public class Movement : MonoBehaviour
         if(flippedControlls) FlippedTimer();
 
         movement = Vector3.zero;
+        movement2d = Vector2.zero;
         // movement2d = Vector2.zero;
         jumpmovement = 0;
        // jumped = false;
