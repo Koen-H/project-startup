@@ -18,23 +18,34 @@ public class LuckyDice : MonoBehaviour
     void Start()
     {
 
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void FixedUpdate()
-    {
-        ShootItem();
+        float closestPlayerDistance = float.MaxValue;
+
+        for (int i = 0; i < 360; i += 4)
+        {
+            float angle = i * Mathf.Deg2Rad;
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+            Vector3 position = this.gameObject.transform.position;
+
+            Physics.Raycast(position, direction, out RaycastHit hit, transform.localScale.x * 0.7f);
+            if (hit.collider != null && hit.distance < closestPlayerDistance && hit.collider.gameObject.layer == 6)
+            {
+                ShootItem();
+                break;
+            }
+
+            Debug.DrawRay(position, direction * transform.localScale.x * 0.7f, Color.red);
+
+        }
     }
 
     void ShootItem()
     {
-
-
         float rand = Random.Range(0f, 360f);
         float randTwo = Random.Range(-60f, -80f);
         //direction.rot  
@@ -43,7 +54,7 @@ public class LuckyDice : MonoBehaviour
         shootFrom.transform.Rotate(Vector3.up, rand);
         shootFrom.transform.Rotate(Vector3.right, randTwo);
         item.GetComponent<Rigidbody>().AddForce(shootFrom.transform.forward * SHOOTSTRENGTH);
-        shootFrom.transform.Rotate(Vector3.right, -randTwo);
-        shootFrom.transform.Rotate(Vector3.up, -rand);
+        Destroy(this.gameObject);
+
     }
 }

@@ -130,7 +130,7 @@ public class Movement : MonoBehaviour
         Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
         float dAngle = (Quaternion.Angle(from, to));
 
-        Debug.Log(dAngle);
+        //Debug.Log(dAngle);
         float fromAngle = Quaternion.Angle(Quaternion.identity, from);
         float toAngle = Quaternion.Angle(Quaternion.identity, to);
 
