@@ -32,12 +32,15 @@ public class PlayerInputController : MonoBehaviour
 
     public void AddPlayer(PlayerInput player)
     {
+
+        Debug.Log("Added");
         players.Add(player);
 
         Transform playerParent = player.transform;
-        playerParent.position = startingPoints[players.Count - 1].position;
+    //    playerParent.position = startingPoints[players.Count - 1].position;
 
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
+        Debug.LogError(layerToAdd);
 
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
