@@ -15,7 +15,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     public GameObject hologramPrefab;
     [SerializeField] Transform blockPlacePosition;
     [SerializeField] LayerMask placeAbleLayer;
-    [HideInInspector] public GameObject placeBlock;
+    public GameObject placeBlock;
     [SerializeField] Material holoMat;
     Vector3 placePoint;
 
@@ -45,7 +45,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         for (int i = 0; i < hologramPrefab.transform.childCount; i++)
         {
-            placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
+         //   placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
             placeBlock.layer = 0;
         }
         placeBlock.transform.position = placePoint + blockPrefab.transform.position;
@@ -90,6 +90,7 @@ public class PlaceBlocksAbility : MonoBehaviour
         {
             // Debug.Log("wdafaw");
             GameObject objectPlaced = Instantiate(blockPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
+            objectPlaced.GetComponent<Lifetime>().enabled = true;
             objectPlaced.SetActive(true);
             objectPlaced.layer = 3;
             cooldownTimer = COOLDOWN_BLOCK_PLACING;

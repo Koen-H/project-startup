@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
     {
         //if (grounded) movement2d = context.ReadValue<Vector2>();
 
-        Debug.Log("Moving");
+        //Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
         if (grounded)  moving  = context.ReadValue<Vector2>();
     }
