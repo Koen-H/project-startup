@@ -152,7 +152,7 @@ public class Movement : MonoBehaviour
 
 
         //   Debug.Log(rotation);
-        if (dAngle <= 2 && Input.anyKey) transform.rotation = to;
+        if (dAngle <= 2 && dAngle >= -2) transform.rotation = to;
         else transform.rotation *= change;
       //  transform.rotation = to;
         //Movement based on rotation
