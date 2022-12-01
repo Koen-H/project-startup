@@ -41,10 +41,10 @@ public class PlayerInputController : MonoBehaviour
 
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
-        playerParent.GetComponentInChildren<InputHandler>().look = player.actions.FindAction("Look");
+        /*playerParent.GetComponentInChildren<InputHandler>().look = player.actions.FindAction("Look");
         Debug.Log(playerParent.GetComponentInChildren<InputHandler>());
         Debug.Log(player.actions.FindAction("Look"));
-        Debug.Log(playerParent.GetComponentInChildren<InputHandler>().look);
+        Debug.Log(playerParent.GetComponentInChildren<InputHandler>().look);*/
 
     }
 

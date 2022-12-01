@@ -9,12 +9,18 @@ public class Bomb : DiceItem
 
     [SerializeField] Material flickerMat;
     [SerializeField] Material defaultMat;
+    [SerializeField] MeshRenderer meshRenderer;
 
     Vector3 origin;
     Vector3 direction;
 
     [SerializeField] float explosionForce = 500f;
     [SerializeField] bool explode = false;
+
+    private void Start()
+    {
+        StartCoroutine(ExplosionCount());
+    }
 
     void Update()
     {
@@ -65,16 +71,29 @@ public class Bomb : DiceItem
     private IEnumerator ExplosionCount()
     {
         yield return new WaitForSeconds(1.0f);
+        meshRenderer.material = flickerMat;
+        yield return new WaitForSeconds(0.75f);
+        meshRenderer.material = defaultMat;
+        yield return new WaitForSeconds(0.75f);
+        meshRenderer.material = flickerMat;
         yield return new WaitForSeconds(0.5f);
-        yield return new WaitForSeconds(0.3f);
+        meshRenderer.material = defaultMat;
+        yield return new WaitForSeconds(0.5f);
+        meshRenderer.material = flickerMat;
         yield return new WaitForSeconds(0.25f);
-        yield return new WaitForSeconds(0.20f);
-        yield return new WaitForSeconds(0.15f);
+        meshRenderer.material = defaultMat;
+        yield return new WaitForSeconds(0.25f);
+        meshRenderer.material = flickerMat;
         yield return new WaitForSeconds(0.1f);
+        meshRenderer.material = defaultMat;
+        yield return new WaitForSeconds(0.1f);
+        meshRenderer.material = flickerMat;
         yield return new WaitForSeconds(0.05f);
+        meshRenderer.material = defaultMat;
         yield return new WaitForSeconds(0.05f);
+        meshRenderer.material = flickerMat;
         yield return new WaitForSeconds(0.05f);
-        yield return new WaitForSeconds(0.05f);
+        meshRenderer.material = defaultMat;
         Explode();
     }
 }
