@@ -16,9 +16,15 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private PlayerInputManager playerInputManager;
 
+    private GameManager gameManager;
+
     private void Awake()
     {
         playerInputManager = this.GetComponent<PlayerInputManager>();
+    }
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
     }
 
     private void OnEnable()
@@ -41,6 +47,7 @@ public class PlayerInputController : MonoBehaviour
 
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
+        gameManager.AddPlayer(playerParent.GetComponent<PlayerData>());
         /*playerParent.GetComponentInChildren<InputHandler>().look = player.actions.FindAction("Look");
         Debug.Log(playerParent.GetComponentInChildren<InputHandler>());
         Debug.Log(player.actions.FindAction("Look"));

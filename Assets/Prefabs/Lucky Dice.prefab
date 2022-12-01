@@ -161,6 +161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceItems:
-  - {fileID: 0}
+  - {fileID: 6027212903372876916, guid: 0ad608a5ef65e994c88364e5c8695644, type: 3}
+  - {fileID: 3290866148047137743, guid: 60691f8cb55f1e14aa4bd9c232e81052, type: 3}
+  - {fileID: 4291981683355389325, guid: 38659e7570b59854687add1abcf58c46, type: 3}
   shootFrom: {fileID: 5345269132221572705}
   SHOOTSTRENGTH: 300
+  TOTAL_RANDOM: 0
+  diceItem: {fileID: 0}

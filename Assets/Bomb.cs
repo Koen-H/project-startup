@@ -54,7 +54,9 @@ public class Bomb : DiceItem
         foreach(RaycastHit hit in hits)
         {
             if(hit.rigidbody == null) continue;
-            hit.rigidbody.AddExplosionForce(explosionForce,this.transform.position, EXPLOSION_RADIUS);
+            float force = explosionForce * hit.rigidbody.mass;
+            //Debug.Log(force);
+            hit.rigidbody.AddExplosionForce(force, this.transform.position, EXPLOSION_RADIUS);
         }
         explode = false;
         Destroy(this.gameObject);
