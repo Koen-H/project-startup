@@ -130,10 +130,54 @@ public class Movement : MonoBehaviour
         Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
         float dAngle = (Quaternion.Angle(from, to));
 
-        Debug.Log(dAngle);
+    //    Debug.Log(dAngle);
         float fromAngle = Quaternion.Angle(Quaternion.identity, from);
         float toAngle = Quaternion.Angle(Quaternion.identity, to);
+        /*    if (from.y < 0)
+            {
+                fromAngle *= -1;
+            }
+            if (to.y < 0)
+            {
+                toAngle *= -1;
+            }
+            fromAngle += 180;
+            toAngle += 180;
+            */
 
+        Debug.Log("to.y: " + to.y + " from.y: " + from.y);
+        Debug.Log("to.w: " + to.w + " from.w: " + from.w);
+    //    if ((to.y <= 0 && from.y < 0) || (to.y < 0 && from.y <= 0)) dAngle *= -1f;
+    // if (!(dAngle <= 1 && dAngle >= -1))
+
+        if ((from.y > 0 && to.y >= 0))
+        {
+            if (from.w < to.w) dAngle *= -1f;
+        }
+        else if ((from.y <= 0 && to.y < 0))
+        {
+            if (from.w > to.w) dAngle *= -1f;
+        }
+        else 
+        {
+            //getting the smallest
+            float test1 = 360 - toAngle + fromAngle;
+            float test2 = toAngle + fromAngle;
+            float shortAngle = Mathf.Min(Mathf.Abs(test1), Mathf.Abs(test2));
+
+            //Both don't work interestingly
+            if ((shortAngle == Mathf.Abs(test1) && (to.y > 0))) dAngle *= -1f;
+            else if (shortAngle == Mathf.Abs(test1) && (to.y <= 0)) dAngle *= -1f;
+            if ((shortAngle == Mathf.Abs(test2) && (from.y > 0))) dAngle *= -1f;
+            else if (shortAngle == Mathf.Abs(test2) && (from.y <= 0)) dAngle *= -1f;
+
+        }
+        Debug.Log("FromAngle:" + fromAngle + " ToAngle:" + toAngle + " dAngle:" + dAngle);
+
+     //   dAngle = (toAngle - fromAngle + 540) % 360 - 180;
+      //  Debug.Log("FromAngle:" + fromAngle + " ToAngle:" + toAngle);
+
+      //  Debug.Log(dAngle);
         // if (from.y < to.y) dAngle *= -1f;
         // if (from.y * to.y < 0) dAngle *= -1f; 
         //Debug.Log(dAngle);
@@ -141,7 +185,7 @@ public class Movement : MonoBehaviour
         // Debug.Log(toAngle);
          // if (dAngle >= 179 && (from.y * to.y < 0)) dAngle *= -1f;
     //    if (from.y * to.y < 0) dAngle *= -1f;
-        if (from.y - to.y > 0) dAngle *= -1f;
+       // if (from.y - to.y > 0 || (fromAngle + toAngle >= 180 && from.y * to.y < 0)) dAngle *= -1f;
 
    //     if (from.y - to.y > 0 && from.y * to.y < 0) dAngle *= -1f;
 
@@ -152,7 +196,7 @@ public class Movement : MonoBehaviour
 
 
         //   Debug.Log(rotation);
-        if (dAngle <= 2 && Input.anyKey) transform.rotation = to;
+        if (dAngle <= 2 && dAngle >= -2) transform.rotation = to;
         else transform.rotation *= change;
       //  transform.rotation = to;
         //Movement based on rotation
@@ -201,7 +245,7 @@ public class Movement : MonoBehaviour
         // Mathf.Abs(movement2d);
       //  movement2d *= -0.05f;
 
-       // movement2d = Vector2.zero;
+        movement2d = Vector2.zero;
 
     }
 
