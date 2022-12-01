@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DiceItem : MonoBehaviour
 {
-    protected bool afterDiceDelay = false;
-
+    public bool afterDiceDelay = true;
 
     private void Start()
     {

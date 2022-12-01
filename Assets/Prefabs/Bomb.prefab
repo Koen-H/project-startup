@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EXPLOSION_RADIUS: 4
-  flickerMat: {fileID: 0}
+  flickerMat: {fileID: 2100000, guid: 8ebc45984fabcf64a8f654efb60ecb9a, type: 2}
   defaultMat: {fileID: 2100000, guid: c89f6acca43b20d4c903159c86e2c7a9, type: 2}
+  meshRenderer: {fileID: 6027212904150093369}
   explosionForce: 500
   explode: 0
 --- !u!135 &6027212903372876905
