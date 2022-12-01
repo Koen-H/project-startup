@@ -130,7 +130,7 @@ public class Movement : MonoBehaviour
         Quaternion rotation = Quaternion.Slerp(from, to, 0.05f);
         float dAngle = (Quaternion.Angle(from, to));
 
-        Debug.Log(dAngle);
+        //Debug.Log(dAngle);
         float fromAngle = Quaternion.Angle(Quaternion.identity, from);
         float toAngle = Quaternion.Angle(Quaternion.identity, to);
 
@@ -152,7 +152,7 @@ public class Movement : MonoBehaviour
 
 
         //   Debug.Log(rotation);
-        if (dAngle <= 2 && Input.anyKey) transform.rotation = to;
+        if (dAngle <= 2 && dAngle >= -2) transform.rotation = to;
         else transform.rotation *= change;
       //  transform.rotation = to;
         //Movement based on rotation

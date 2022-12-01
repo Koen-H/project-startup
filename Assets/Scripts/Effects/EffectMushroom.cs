@@ -15,7 +15,7 @@ public class EffectMushroom : MonoBehaviour
     float growthSpeed = 2;
     [SerializeField]
     //For how long does this effect stay?
-    float growthDuration = 8;
+    public float growthDuration = 8;
 
     float startTime;
     float t = 1;
