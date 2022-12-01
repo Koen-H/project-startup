@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    List<PlayerData> players = new List<PlayerData>(); 
+    [SerializeField]
+    public List<PlayerData> players = new List<PlayerData>(); 
 
     private static GameManager _instance;
     public static GameManager Instance

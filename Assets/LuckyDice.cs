@@ -53,9 +53,7 @@ public class LuckyDice : MonoBehaviour
                 ShootItem();
                 break;
             }
-
             Debug.DrawRay(position, direction * transform.localScale.x * 0.7f, Color.red);
-
         }
     }
 
