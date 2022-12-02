@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
     {
         //if (grounded) movement2d = context.ReadValue<Vector2>();
 
-        Debug.Log("Moving");
+        // Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
         if (grounded)  moving  = context.ReadValue<Vector2>();
     }
@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
         {
             jumped = false;
         }
-        Debug.Log("jumped");
+        //Debug.Log("jumped");
 
     }
 
@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
      //   Debug.Log(movement2d);
         Vector3 playerPosition = this.transform.position;
         Ray ray = new Ray(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down);
-        Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
+      //  Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
         grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
         if (jumped && grounded)
@@ -115,7 +115,7 @@ public class Movement : MonoBehaviour
             {
                 movement.y = JUMP_FORCE / 10;
                 jumpTimer -= Time.deltaTime;
-                Debug.Log("Jumping");
+           //     Debug.Log("Jumping");
             }
         }
      
@@ -185,7 +185,7 @@ public class Movement : MonoBehaviour
 
 
         //   Debug.Log(rotation);
-        Debug.Log(Mathf.Abs(transform.rotation.y - rotation.eulerAngles.y));
+        // Debug.Log(Mathf.Abs(transform.rotation.y - rotation.eulerAngles.y));
         if (Mathf.Abs(transform.rotation.eulerAngles.y - rotation.eulerAngles.y) < .1f) transform.rotation = to;
         else transform.rotation = rotation;
       //  transform.rotation = to;

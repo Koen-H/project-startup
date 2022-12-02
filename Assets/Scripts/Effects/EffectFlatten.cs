@@ -42,7 +42,7 @@ public class EffectFlatten : MonoBehaviour
         if (transform.localScale.y > originalScale.y * 0.9f)
         {
             transform.localScale = originalScale;
-            Debug.Log(originalScale);
+            //Debug.Log(originalScale);
             Destroy(this);
         }
     }

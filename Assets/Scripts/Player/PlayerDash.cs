@@ -58,7 +58,7 @@ public class PlayerDash : MonoBehaviour
 
         if (bumpPlayer != null && INCLUDE_PUSH)
         {
-            Debug.Log("past");
+            //Debug.Log("past");
             Rigidbody bumpPlayerRigidBody = bumpPlayer.gameObject.GetComponent<Rigidbody>();
 
             //No up bumping allowed
@@ -96,7 +96,7 @@ public class PlayerDash : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject != parent && hit.distance < closestPlayerDistance && hit.collider.gameObject.TryGetComponent<Movement>(out Movement otherPlayer))
             {
-                Debug.Log("hit");
+                //Debug.Log("hit");
                 bumpPlayer = otherPlayer;
                 closestPlayerDistance = hit.distance;
                 bumpDirection = hit.point - this.transform.position;
