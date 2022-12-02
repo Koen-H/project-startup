@@ -18,4 +18,14 @@ public class TorusTest : MonoBehaviour
 
         transform.position += direction * Time.deltaTime;
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
 }
