@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
     {
         //if (grounded) movement2d = context.ReadValue<Vector2>();
 
-        Debug.Log("Moving");
+        // Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
         if (grounded)  moving  = context.ReadValue<Vector2>();
     }
@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
         {
             jumped = false;
         }
-        Debug.Log("jumped");
+        //Debug.Log("jumped");
 
     }
 
@@ -185,7 +185,7 @@ public class Movement : MonoBehaviour
 
 
         //   Debug.Log(rotation);
-        Debug.Log(Mathf.Abs(transform.rotation.y - rotation.eulerAngles.y));
+        // Debug.Log(Mathf.Abs(transform.rotation.y - rotation.eulerAngles.y));
         if (Mathf.Abs(transform.rotation.eulerAngles.y - rotation.eulerAngles.y) < .1f) transform.rotation = to;
         else transform.rotation = rotation;
       //  transform.rotation = to;

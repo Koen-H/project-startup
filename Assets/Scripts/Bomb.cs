@@ -50,7 +50,7 @@ public class Bomb : DiceItem
     void Explode()
     {
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, EXPLOSION_RADIUS, transform.forward * 0.1f, 1f);
-        Debug.Log(hits.Length);
+        //Debug.Log(hits.Length);
         foreach(RaycastHit hit in hits)
         {
             if(hit.rigidbody == null) continue;
