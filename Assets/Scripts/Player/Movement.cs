@@ -91,6 +91,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
+        
         movement2d = Vector2.zero;
         movement2d = moving;
 
@@ -162,7 +164,7 @@ public class Movement : MonoBehaviour
 
         //Project movement unto wanted rotation
 
-
+        /*
         
         //Vector3 rotationDirectionVector = new Vector3(Mathf.Sin(transform.rotation.eulerAngles.x), 0, Mathf.Cos(transform.rotation.eulerAngles.y) * Mathf.Cos(transform.rotation.eulerAngles.x));
         float elevation = Mathf.Deg2Rad * transform.rotation.eulerAngles.x;
@@ -188,10 +190,12 @@ public class Movement : MonoBehaviour
 
         // movement2d = transform.forward;
 
+        */
+        movements.Normalize();
 
-        //movements.Normalize();
-        if (size < 0) size = 0;
-        movement2d *= size;
+        movement2d = new Vector2(movements.x, movements.z);
+       // if (size < 0) size = 0;
+      //  movement2d *= size;
 
 
     }
@@ -220,8 +224,9 @@ public class Movement : MonoBehaviour
 
         ExtraGravity(EXTRA_GRAVITY);
 
-   //     Debug.Log(movement);
-        rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
+        //     Debug.Log(movement);
+        //     rigidBody.AddRelativeForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
+        rigidBody.AddForce(movement * Time.deltaTime * speed, ForceMode.Impulse);
         if(flippedControlls) FlippedTimer();
 
         movement = Vector3.zero;

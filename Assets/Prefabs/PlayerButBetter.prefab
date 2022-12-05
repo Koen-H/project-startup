@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776060149467289186}
-  m_LocalRotation: {x: 0.018189505, y: 3.270359e-16, z: 1.6265601e-16, w: 0.99983466}
+  m_LocalRotation: {x: 0.018189505, y: -2.0630112e-15, z: 2.139529e-16, w: 0.99983466}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSensitivity: 1
-  STANDARD_SPEED: 800
-  JUMP_FORCE: 40
+  STANDARD_SPEED: 2400
+  JUMP_FORCE: 60
   EXTRA_GRAVITY: 2
   FLIPPED_CONTROLLS_DURATION: 6
   cameraObj: {fileID: 0}
@@ -319,7 +319,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2835091956561323734}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 29a6bfaa3fbe43147acf6a6ae3000a76, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -335,7 +335,7 @@ Rigidbody:
   m_GameObject: {fileID: 2835091956561323734}
   serializedVersion: 2
   m_Mass: 20
-  m_Drag: 2
+  m_Drag: 10
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -371,7 +371,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3354649091729524373}
-  m_LocalRotation: {x: 0.21201204, y: 9.101888e-22, z: -1.974598e-22, w: 0.9772671}
+  m_LocalRotation: {x: 0.21201204, y: -9.101888e-22, z: 1.974598e-22, w: 0.9772671}
   m_LocalPosition: {x: 0, y: 5, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -644,7 +644,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4260754346451257473}
-  m_LocalRotation: {x: -0.018141463, y: 0.000000016340058, z: -0.000000007084892,
+  m_LocalRotation: {x: -0.018141463, y: 0.0000000126625475, z: -0.0000000054903584,
     w: 0.9998355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1135,7 +1135,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7560779465388353276}
-  m_LocalRotation: {x: -0.000000014901161, y: 8.45689e-22, z: -3.542985e-22, w: 1}
+  m_LocalRotation: {x: -0.000000014901161, y: -8.45689e-22, z: 3.542985e-22, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d911cca5f90c47a75e3e9ab701e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  COOLDOWN_BLOCK_PLACING: 1.2
+  COOLDOWN_BLOCK_PLACING: 5
   blockPrefab: {fileID: 8162159828577933158, guid: 20118a9d5d242cd47ad33c1a42695916,
     type: 3}
   hologramPrefab: {fileID: 8162159828577933158, guid: 20118a9d5d242cd47ad33c1a42695916,
@@ -1347,7 +1347,7 @@ MonoBehaviour:
     m_Bits: 8
   placeBlock: {fileID: 8162159828577933158, guid: 20118a9d5d242cd47ad33c1a42695916,
     type: 3}
-  holoMat: {fileID: 2100000, guid: 275fc9aa0bc811846936d5c3629c4721, type: 2}
+  holoMat: {fileID: 2100000, guid: 35c183553304b9c4eb6cf499ffb72cff, type: 2}
 --- !u!114 &4766142132236484855
 MonoBehaviour:
   m_ObjectHideFlags: 0
