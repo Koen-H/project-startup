@@ -35,4 +35,9 @@ public class SceneSwitchingButtons : MonoBehaviour
     {
         SceneManager.LoadScene("LevelOneScene");
     }
+    public void MenuButton()
+    {
+        Debug.Log("Test");
+        SceneManager.LoadScene("StartMenuScene");
+    }
 }
