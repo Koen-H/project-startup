@@ -43,7 +43,6 @@ public class PlayerInputController : MonoBehaviour
         players.Add(player);
 
         Transform playerParent = player.transform;
-    //    playerParent.position = startingPoints[players.Count - 1].position;
 
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
      //   Debug.LogError(layerToAdd);
@@ -51,6 +50,10 @@ public class PlayerInputController : MonoBehaviour
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
         gameManager.AddPlayer(playerParent.GetComponentInChildren<PlayerData>());
+        
+        if(startingPoints.Count > 1) playerParent.position = startingPoints[players.Count - 1].position;
+        else if (startingPoints.Count == 1) playerParent.position = startingPoints[0].position;
+
         /*playerParent.GetComponentInChildren<InputHandler>().look = player.actions.FindAction("Look");
         Debug.Log(playerParent.GetComponentInChildren<InputHandler>());
         Debug.Log(player.actions.FindAction("Look"));

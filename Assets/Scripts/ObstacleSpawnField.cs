@@ -18,7 +18,7 @@ public class ObstacleSpawnField : MonoBehaviour
         float angle = Random.Range(0, 360);
         float mag = Random.Range(0, transform.localScale.x);
 
-        Debug.Log("Fhxdzgjkdsc : " + obstacleIndex);
+        // Debug.Log("Fhxdzgjkdsc : " + obstacleIndex);
 
         GameObject newObstacleObject = Instantiate(obstacleObjects[obstacleIndex]);
         newObstacleObject.transform.position = transform.position + Vector3.forward * mag / 2;
