@@ -1346,7 +1346,8 @@ MonoBehaviour:
   placeAbleLayer:
     serializedVersion: 2
     m_Bits: 8
-  placeBlock: {fileID: 0}
+  placeBlock: {fileID: 8162159828577933158, guid: 20118a9d5d242cd47ad33c1a42695916,
+    type: 3}
   holoMat: {fileID: 2100000, guid: 275fc9aa0bc811846936d5c3629c4721, type: 2}
 --- !u!114 &4766142132236484855
 MonoBehaviour:
