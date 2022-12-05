@@ -15,11 +15,20 @@ public class Bomb : DiceItem
     Vector3 direction;
 
     [SerializeField] float explosionForce = 500f;
-    [SerializeField] bool explode = false;
+    [SerializeField] bool doExplode = false;
+    bool exploded = false;
+
+    [SerializeField] SkinnedMeshRenderer bomb;
+
+    float expand = 0;
+    float explode = 0;
+    float gravity = 0;
+    float t;
 
     private void Start()
     {
-        StartCoroutine(ExplosionCount());
+        StartCoroutine(DestroyBarrel());
+        StartCoroutine(ItemDiceDelay());
     }
 
     void Update()
@@ -43,8 +52,37 @@ public class Bomb : DiceItem
         //}
         origin = transform.position;
         
-       if (explode) Explode();
+       if (doExplode && !exploded) Explode();
         
+    }
+    private void FixedUpdate() // Dont fuck with it unless you wanna fix it 
+    {
+        if (afterDiceDelay)
+        {
+            t += Time.deltaTime;
+
+            float vlaue = 10 * Mathf.Cos(t * 20) * Mathf.Sin(t * 16) * Mathf.Cos(t * 30 + 2);
+
+            float expandFactor = Mathf.Lerp(0, 100, t / 2);
+            expand = expandFactor + vlaue;
+            if (t > 2) expand = 1;
+            float explodeFactor = Mathf.Lerp(0, 100, t - 2);
+            if (t > 2.1f) doExplode = true; // The float is the time when it explodes
+
+            explode = explodeFactor;
+
+            float gravityFactor = Mathf.Lerp(0, 100, (t - 2.1f) / 10);
+            gravityFactor *= gravityFactor;
+
+            gravity = gravityFactor;
+
+            if (t > 3.1f) Destroy(this.gameObject);
+
+            bomb.SetBlendShapeWeight(0, expand);
+            bomb.SetBlendShapeWeight(1, explode);
+            bomb.SetBlendShapeWeight(2, gravity);
+        }
+
     }
 
     void Explode()
@@ -53,13 +91,13 @@ public class Bomb : DiceItem
         //Debug.Log(hits.Length);
         foreach(RaycastHit hit in hits)
         {
-            if(hit.rigidbody == null) continue;
+            if(hit.rigidbody == null || hit.rigidbody == this.gameObject.GetComponent<Rigidbody>()) continue;
             float force = explosionForce * hit.rigidbody.mass;
             //Debug.Log(force);
             hit.rigidbody.AddExplosionForce(force, this.transform.position, EXPLOSION_RADIUS);
         }
-        explode = false;
-        Destroy(this.gameObject);
+        doExplode = false;
+        exploded = true;
     }
 
     private void OnDrawGizmosSelected()
@@ -70,32 +108,9 @@ public class Bomb : DiceItem
     }
 
     //Could be improved, but fine for this prototype...
-    private IEnumerator ExplosionCount()
+    private IEnumerator DestroyBarrel()
     {
-        yield return new WaitForSeconds(1.0f);
-        meshRenderer.material = flickerMat;
-        yield return new WaitForSeconds(0.75f);
-        meshRenderer.material = defaultMat;
-        yield return new WaitForSeconds(0.75f);
-        meshRenderer.material = flickerMat;
-        yield return new WaitForSeconds(0.5f);
-        meshRenderer.material = defaultMat;
-        yield return new WaitForSeconds(0.5f);
-        meshRenderer.material = flickerMat;
-        yield return new WaitForSeconds(0.25f);
-        meshRenderer.material = defaultMat;
-        yield return new WaitForSeconds(0.25f);
-        meshRenderer.material = flickerMat;
-        yield return new WaitForSeconds(0.1f);
-        meshRenderer.material = defaultMat;
-        yield return new WaitForSeconds(0.1f);
-        meshRenderer.material = flickerMat;
-        yield return new WaitForSeconds(0.05f);
-        meshRenderer.material = defaultMat;
-        yield return new WaitForSeconds(0.05f);
-        meshRenderer.material = flickerMat;
-        yield return new WaitForSeconds(0.05f);
-        meshRenderer.material = defaultMat;
-        Explode();
+        yield return new WaitForSeconds(8.0f);
+        Destroy(this.gameObject);
     }
 }

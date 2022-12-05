@@ -11,7 +11,7 @@ public class DiceItem : MonoBehaviour
         StartCoroutine(ItemDiceDelay());
     }
 
-    private IEnumerator ItemDiceDelay()
+    public IEnumerator ItemDiceDelay()
     {
         yield return new WaitForSeconds(1.5f);
         afterDiceDelay = true;
