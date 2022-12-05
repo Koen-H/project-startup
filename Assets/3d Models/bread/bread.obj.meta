@@ -3,7 +3,12 @@ guid: e0eb3c86e9c1ec84c95605609c085560
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crustMat
+    second: {fileID: 2100000, guid: 8f53a1402fd9a2a4aad43d9f75942817, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

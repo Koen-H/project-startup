@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer(PlayerData newPlayer)
     {
+        newPlayer.name = "player " + (players.Count + 1);
         players.Add(newPlayer);
+    }
+
+    public void Winner(GameObject playerWon)
+    {
+        Debug.Log($"{playerWon.GetComponent<PlayerData>().name} won!");
     }
 }

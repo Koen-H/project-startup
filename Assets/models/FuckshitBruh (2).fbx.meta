@@ -3,7 +3,22 @@ guid: 5d0fb9e5903d01c469c8229500e00d3d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Duck_lambert1SG
+    second: {fileID: 2100000, guid: 40476d6aacc2d914780474581d2272e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Duck_lambert2SG
+    second: {fileID: 2100000, guid: 40476d6aacc2d914780474581d2272e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initialShadingGroup
+    second: {fileID: 2100000, guid: 40476d6aacc2d914780474581d2272e4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
