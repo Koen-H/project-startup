@@ -73,7 +73,7 @@ public class PlayerSpawnLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) SpawnPlayer();
+       // if (Input.GetKeyDown(KeyCode.R)) SpawnPlayer();
         if(spawnProtection) SpawnProtection();
     }
 }

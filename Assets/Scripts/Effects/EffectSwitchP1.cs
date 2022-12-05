@@ -6,20 +6,22 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class EffectSwitchP1 : MonoBehaviour
 {
     GameObject randomPlayer;
-    List<PlayerData> players = GameManager.Instance.players;
+    List<PlayerData> players = new List<PlayerData> ();
 
     void Start()
     {
-        if (players.Count < 2)
+        if (GameManager.Instance.players.Count < 2)
         {
             Destroy(this);
             return;
         }
-        foreach (PlayerData player in players)
+
+        foreach (PlayerData player in GameManager.Instance.players)
         {
-            //Add player teleport animation
             player.gameObject.AddComponent<EffectSwitchP2>();
+            players.Add(player);
         }
+
         players.Remove(GetComponent<PlayerData>());
         randomPlayer = SelectRandomPlayer();
         players.Remove(randomPlayer.GetComponent<PlayerData>());

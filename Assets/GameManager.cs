@@ -6,7 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    public List<PlayerData> players = new List<PlayerData>(); 
+    public List<PlayerData> players = new List<PlayerData>();
+
+    [SerializeField] GameObject preGameCamera;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -26,18 +28,41 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+    }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameReady();
+        }
+    }
+
+
+
+    /// <summary>
+    /// Once everyone's ready, start the cinematic where the road to bread is shown.
+    /// It should automatically trigger the countdown when it's ready.
+    /// </summary>
+    private void GameReady()
+    {
+        if (preGameCamera != null) preGameCamera.GetComponent<PreGameCamera>().StartAnim();
+        else Debug.LogError("There was no pre-game camera found!");
+
+        //preGameCamera.GetComponent<Animation>()["test"].speed
     }
 
     public void AddPlayer(PlayerData newPlayer)
     {
         newPlayer.name = "player " + (players.Count + 1);
         players.Add(newPlayer);
+
+        //players.disableplayermovement or something like that
     }
 
     public void StartGame()
     {
-        Time.timeScale = 0f;
+        
         StartCoroutine(StartCountDown());
     }
 
@@ -57,7 +82,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("1");
         yield return new WaitForSeconds(1);//1
         Debug.Log("Go!");
-        Time.timeScale = 1f;//Go!
-        yield return new WaitForSeconds(1);//1
+        //players.enableplayermovement or something like that
+        yield return new WaitForSeconds(1);//Remove GO after one second
     }   
 }
