@@ -62,7 +62,7 @@ public class TorusTest : MonoBehaviour
 
             Vector3 dPos = positionPlayer - positionTorus;
             dPos += Vector3.up;
-
+            Debug.Log("efafa");
             other.GetComponent<Rigidbody>().AddForce(dPos * forceAmount * Time.deltaTime, ForceMode.Impulse);
 
         }
