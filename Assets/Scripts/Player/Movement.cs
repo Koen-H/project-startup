@@ -93,8 +93,6 @@ public class Movement : MonoBehaviour
     {
         movement2d = Vector2.zero;
         movement2d = moving;
-     //   movement2d.x += Input.GetAxis("Horizontal");
-     //  movement2d.y += Input.GetAxis("Vertical");
 
         movement2d.Normalize();
      //   Debug.Log(movement2d);
@@ -106,7 +104,6 @@ public class Movement : MonoBehaviour
         if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
-          //  jumpmovement = JUMP_FORCE;
             jumpTimer = jumpMaxTime;
         }
         if (jumped)
@@ -115,30 +112,16 @@ public class Movement : MonoBehaviour
             {
                 movement.y = JUMP_FORCE / 10;
                 jumpTimer -= Time.deltaTime;
-           //     Debug.Log("Jumping");
             }
         }
      
-        //  transform.Rotate(0, look2d.x * rotationSensitivity, 0);
 
-        //  Rotation();
-
-
-       // Debug.Log(movement2d);
-        //Rotate player
-        //Quaternion to = Quaternion.Euler(movement2d.x, 0, movement2d.y);
 
         Vector3 movement3dAngle = new Vector3(movement2d.x, 0, movement2d.y);
         Quaternion from = transform.rotation;
         if (movement2d != Vector2.zero)
         {
-            // float angle = Mathf.Asin(movement2d.y);
-            // float angle = Mathf.Atan(movement2d.y / movement2d.x);
-            //  float angle = Vector3.Angle(Vector3.forward, movement3dAngle);
-            // Vector3 test = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
-            // if (test == Vector3.zero) test = Vector3.forward;
-            //    angle = Vector3.Angle(Vector3.forward, movement3dAngle);
-            //  angle = Vector3.Angle(Vector3.forward, movement3dAngle);
+
             angle = Vector3.Angle(Vector3.forward, movement3dAngle);
          //   Debug.Log(angle);
 
@@ -167,24 +150,7 @@ public class Movement : MonoBehaviour
         float fromAngle = Quaternion.Angle(Quaternion.identity, from);
         float toAngle = Quaternion.Angle(Quaternion.identity, to);
 
-        // if (from.y < to.y) dAngle *= -1f;
-        // if (from.y * to.y < 0) dAngle *= -1f; 
-        //Debug.Log(dAngle);
-        // Debug.Log(fromAngle);
-        // Debug.Log(toAngle);
-        // if (dAngle >= 179 && (from.y * to.y < 0)) dAngle *= -1f;
-        //    if (from.y * to.y < 0) dAngle *= -1f;
-        //  if (from.y - to.y > 0) dAngle *= -1f;
 
-        //     if (from.y - to.y > 0 && from.y * to.y < 0) dAngle *= -1f;
-
-        //if (fromAngle > toAngle && (from.y * to.y < 0)) dAngle *= -1f;
-        //   float dAngleClamped = Mathf.Clamp(dAngle, -2, 2);
-
-        //    Quaternion change = Quaternion.AngleAxis(dAngleClamped, transform.up);
-
-
-        //   Debug.Log(rotation);
         // Debug.Log(Mathf.Abs(transform.rotation.y - rotation.eulerAngles.y));
         if (Mathf.Abs(transform.rotation.eulerAngles.y - rotation.eulerAngles.y) < .1f) transform.rotation = to;
         else transform.rotation = rotation;
@@ -209,12 +175,7 @@ public class Movement : MonoBehaviour
         movements = transform.rotation * movements;
         
         movements.Normalize();
-        if (size > 0)
-        {
-          //  Debug.Log(movements);
-         //   Debug.Log(direction);
-         //   Debug.Log(size);
-        }
+
         
 
         Vector3 vec3 = new Vector3(-movement2d.x, 0, movement2d.y);
@@ -231,11 +192,7 @@ public class Movement : MonoBehaviour
         //movements.Normalize();
         if (size < 0) size = 0;
         movement2d *= size;
-      //   Debug.Log(movement2d);
-        // Mathf.Abs(movement2d);
-      //  movement2d *= -0.05f;
 
-      //  movement2d = Vector2.zero;
 
     }
 
