@@ -61,6 +61,7 @@ public class Movement : MonoBehaviour
         Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
         if (grounded)  moving  = context.ReadValue<Vector2>();
+        Debug.Log(moving);
     }
     public void Jump(InputAction.CallbackContext context)
     {
