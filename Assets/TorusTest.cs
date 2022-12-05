@@ -10,6 +10,8 @@ public class TorusTest : MonoBehaviour
     private float MAX_DISTANCE = 10f;
     private float _distance = 10f;
     [SerializeField] private float forceAmount = 5000f;
+
+    private GameObject excludeObject;
     public void SetSpeed(float amount)
     {
         _speed = amount;
@@ -23,6 +25,11 @@ public class TorusTest : MonoBehaviour
     {
         MAX_DISTANCE = amount;
         _distance = amount; 
+    }
+
+    public void ExcludePlayer(GameObject player)
+    {
+        excludeObject= player;
     }
 
     // Start is called before the first frame update
@@ -55,7 +62,7 @@ public class TorusTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.gameObject != excludeObject)
         {
             Vector3 positionTorus = this.transform.position;
             Vector3 positionPlayer = other.transform.position;

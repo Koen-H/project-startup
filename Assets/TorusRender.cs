@@ -15,6 +15,8 @@ public class TorusRender : MonoBehaviour
 
     private float height = 3.0f;
 
+    public bool start = false;
+
     [Tooltip("LineCount is how many points the circle consist from (the closer to 360 the sharper the circle, but more resource intensive)")] 
     [SerializeField] private int lineCount = 90;
     int step;
@@ -42,9 +44,11 @@ public class TorusRender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!start) return;
         //360 points for 360 degrees
         lineRenderer.positionCount = lineCount;
         if (size < distance) size += speed * Time.deltaTime;
+        else Destroy(gameObject);
 
 
         //Makes a position in the linerender for every degree

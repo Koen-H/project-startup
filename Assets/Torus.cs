@@ -10,13 +10,8 @@ public class Torus : DiceItem
     [SerializeField] private float _size = 3f;
     private TorusRender _render;
     public GameObject torusPartPrefab;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-       
-
-    }
+    public GameObject playerPickedUp;
 
     // Update is called once per frame
     void Update()
@@ -34,6 +29,7 @@ public class Torus : DiceItem
                 Physics.Raycast(position, direction, out RaycastHit hit, 0.8f);
                 if (hit.collider != null && hit.distance < closestPlayerDistance && hit.collider.gameObject.layer == 6)
                 {
+                    playerPickedUp = hit.collider.gameObject;
                     DoBongo();
                     break;
                 }
@@ -50,14 +46,16 @@ public class Torus : DiceItem
         _render.SetSpeed(_speed);
         _render.SetDistance(_distance);
         _render.SetHeight(_size);
+        _render.start = true;
         for (int i = 0; i < 360; i += 4)
         {
             Quaternion angle = Quaternion.AngleAxis(i, Vector3.up);
             GameObject torusPart = Instantiate(torusPartPrefab, this.transform.position, angle);
 
             torusPart.GetComponent<TorusTest>().SetSpeed(_speed);
+            torusPart.GetComponent<TorusTest>().ExcludePlayer(playerPickedUp);
             torusPart.transform.localScale = new Vector3(_size, _size, _size);
         }
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
 }
