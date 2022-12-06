@@ -309,7 +309,7 @@ MonoBehaviour:
   rotationSensitivity: 1
   STANDARD_SPEED: 2400
   JUMP_FORCE: 40
-  EXTRA_GRAVITY: 1.9
+  EXTRA_GRAVITY: 1.35
   FLIPPED_CONTROLLS_DURATION: 6
   cameraObj: {fileID: 0}
   rigidBody: {fileID: 2835091956561323732}
