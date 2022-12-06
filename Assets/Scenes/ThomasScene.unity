@@ -303,7 +303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 81b5de8cb53c0e34a902de406009bbbd, type: 2}
+  - {fileID: 2100000, guid: 063864e15e0149a45b116ac1e2bd0919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -479,7 +479,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1d9bc2fbea9786747a07606607c14af9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d9bc2fbea9786747a07606607c14af9,
         type: 3}
@@ -2653,7 +2653,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1307630262
 PrefabInstance:
@@ -3430,7 +3430,7 @@ PrefabInstance:
     - target: {fileID: 8051694522964542383, guid: 6d5a358c4d48ee0439b09c600e7eaf46,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8051694522964542383, guid: 6d5a358c4d48ee0439b09c600e7eaf46,
         type: 3}
