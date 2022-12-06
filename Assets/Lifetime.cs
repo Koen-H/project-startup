@@ -21,6 +21,6 @@ public class Lifetime : MonoBehaviour
         }
 
         LIFETIME_TIMER -= Time.deltaTime;
-        Debug.Log(LIFETIME_TIMER);
+        //Debug.Log(LIFETIME_TIMER);
     }
 }

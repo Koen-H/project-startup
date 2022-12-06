@@ -17,8 +17,6 @@ public class PreGameCamera : MonoBehaviour
             playerCamera[player.gameObject] = cam;
             cam.Follow = this.gameObject.transform;
             cam.LookAt = lookAt.transform;
-
-            // do something with entry.Value or entry.Key
         }
         GetComponent<Animation>().Play();
 
@@ -32,8 +30,6 @@ public class PreGameCamera : MonoBehaviour
         {
             entry.Value.Follow = entry.Key.transform;
             entry.Value.LookAt = entry.Key.transform.Find("PointLookAt").transform;
-
-            // do something with entry.Value or entry.Key
         }
     }
 }

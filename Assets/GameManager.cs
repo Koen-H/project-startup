@@ -1,6 +1,8 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -69,6 +71,12 @@ public class GameManager : MonoBehaviour
     public void Winner(GameObject playerWon)
     {
         Debug.Log($"{playerWon.GetComponent<PlayerData>().name} won!");
+        foreach (PlayerData player in GameManager.Instance.players)//Look at the winner
+        {
+            CinemachineFreeLook cam = player.gameObject.GetComponentInChildren<CinemachineFreeLook>();
+            cam.Follow = playerWon.transform;
+            cam.LookAt = playerWon.transform.Find("PointLookAt").transform;
+        }
     }
 
 
