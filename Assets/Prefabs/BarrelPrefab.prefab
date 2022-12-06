@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 433022579328312422}
   - component: {fileID: 7775604923539255311}
   m_Layer: 3
-  m_Name: Block
+  m_Name: BarrelPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933425644787404525}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 200
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

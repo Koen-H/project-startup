@@ -36,8 +36,12 @@ public class PlayerSprint : MonoBehaviour
                     sprintAmount += REGEN_SPRINT_AMOUNT * Time.deltaTime;
                 }
 
+<<<<<<< HEAD
                 Debug.Log("SprintAmount: " + sprintAmount);
         */
     //    Debug.Log("SprintAmount: " + sprintAmount);
+=======
+      //  Debug.Log("SprintAmount: " + sprintAmount);
+>>>>>>> buttonsinventory
     }
 }
