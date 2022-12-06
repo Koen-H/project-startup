@@ -45,12 +45,14 @@ public class Movement : MonoBehaviour
     bool grounded;
     Vector2 moving;
 
-
+    PoisonVisual poison;
 
 
     private void Start()
     {
         SetStandardSpeed();
+
+        poison = GetComponentInChildren<PoisonVisual>();
 
 
     }
@@ -204,6 +206,8 @@ public class Movement : MonoBehaviour
     public void FlipControlls()
     {
         if (flippedControlls) return;
+
+        poison.ActivatePoison();
         flippedControlls = true;
         flippedControllsValue = -1; 
 
@@ -215,7 +219,8 @@ public class Movement : MonoBehaviour
         {
             flippedTime = 0;
             flippedControlls = false;
-            flippedControllsValue = 1; 
+            flippedControllsValue = 1;
+            poison.DeactivatePoison();
         }
     }
 
