@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.UI;
+using static UnityEngine.LightAnchor;
 
 public class Movement : MonoBehaviour
 {
@@ -64,12 +65,11 @@ public class Movement : MonoBehaviour
 
         // Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
-        if (grounded)
-        {
-            moving = context.ReadValue<Vector2>();
-        }
+ 
+        moving = Vector2.zero;
+        moving = context.ReadValue<Vector2>();
+        
 
-        else if (midair) moving = Vector2.zero;
 
         // Debug.Log(moving);
     }
@@ -117,6 +117,22 @@ public class Movement : MonoBehaviour
       //  Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
         grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+
+        if (!grounded)
+        {
+            for (int i = 0; i < 360; i += 4)
+            {
+                float angle = i * Mathf.Deg2Rad;
+                Vector3 direction = new Vector3(Mathf.Cos(angle) / 5, -0.5f, Mathf.Sin(angle) / 5);
+                Vector3 position = new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z);
+
+                grounded = Physics.Raycast(position, direction, out RaycastHit hit, .4f);
+
+                if (grounded) return;
+                Debug.DrawRay(position, direction * 2, Color.red);
+
+            }
+        }
         if (grounded) midair = false; 
         if (jumped && grounded)
         {
