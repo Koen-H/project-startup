@@ -9,7 +9,7 @@ using UnityEngine.Rendering.UI;
 
 public class Movement : MonoBehaviour
 {
-
+    Animator playerAnimator;
     public bool allowInput = true;
     //  [Space(10)]
     [Header("Changable")]
@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         SetStandardSpeed();
-
+        playerAnimator = GetComponentInChildren<Animator>();
 
     }
     public void Move(InputAction.CallbackContext context)
@@ -97,9 +97,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
-        
+        //playerAnimator.SetBool("jumping", true);
+
+        //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
+
         movement2d = Vector2.zero;
         movement2d = moving;
 
@@ -115,6 +116,7 @@ public class Movement : MonoBehaviour
             movement.y = JUMP_FORCE;
             jumpTimer = jumpMaxTime;
         }
+        playerAnimator.SetBool("jumping", false);
         if (jumped)
         {
             if (jumpTimer > 0)
@@ -122,15 +124,17 @@ public class Movement : MonoBehaviour
                 movement.y = JUMP_FORCE / 10;
                 jumpTimer -= Time.deltaTime;
             }
+            playerAnimator.SetBool("jumping", true);
         }
-     
+
 
 
         Vector3 movement3dAngle = new Vector3(movement2d.x, 0, movement2d.y);
         Quaternion from = transform.rotation;
+        playerAnimator.SetBool("walking", false);
         if (movement2d != Vector2.zero)
         {
-
+            playerAnimator.SetBool("walking", true);
             angle = Vector3.Angle(Vector3.forward, movement3dAngle);
          //   Debug.Log(angle);
 
