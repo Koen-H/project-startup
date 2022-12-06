@@ -33,7 +33,7 @@ public class PlaceBlocksAbility : MonoBehaviour
         Destroy(placeBlock);
         placeBlock = Instantiate(hologramPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
        // placeBlock.transform.rotation = this.transform.parent.rotation;
-        //   if (placeBlock.transform.TryGetComponent<Renderer>(out Renderer rend)) rend.material = holoMat;
+          if (placeBlock.transform.TryGetComponent<Renderer>(out Renderer rend)) rend.material = holoMat;
         if (placeBlock.transform.TryGetComponent<Rigidbody>(out Rigidbody rig))
         {
             Destroy(rig);
@@ -45,7 +45,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         for (int i = 0; i < hologramPrefab.transform.childCount; i++)
         {
-         //   placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
+            placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
             placeBlock.layer = 0;
         }
         placeBlock.transform.position = placePoint + blockPrefab.transform.position;
