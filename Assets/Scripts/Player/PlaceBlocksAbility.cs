@@ -29,7 +29,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     }
     public void InstantiateHologram()
     {
-        Destroy(placeBlock);
+        DestroyImmediate(placeBlock);
         placeBlock = Instantiate(hologramPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
        // placeBlock.transform.rotation = this.transform.parent.rotation;
           if (placeBlock.transform.TryGetComponent<Renderer>(out Renderer rend)) rend.material = holoMat;
