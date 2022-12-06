@@ -9,6 +9,8 @@ using UnityEngine.Rendering.UI;
 
 public class Movement : MonoBehaviour
 {
+
+    public bool allowInput = true;
     //  [Space(10)]
     [Header("Changable")]
     float speed = 50f;
@@ -56,18 +58,21 @@ public class Movement : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
+
+        if (!allowInput) return;
         //if (grounded) movement2d = context.ReadValue<Vector2>();
 
-        Debug.Log("Moving");
+        // Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
-        if (grounded)  moving  = context.ReadValue<Vector2>();
-        Debug.Log(moving);
+        if (grounded) moving = context.ReadValue<Vector2>();
+        else moving = Vector2.zero;
+        // Debug.Log(moving);
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        
+        if (!allowInput) return;
 
-       if (context.started)
+        if (context.started)
         {
             jumped = true;
         }
@@ -92,6 +97,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
         
         movement2d = Vector2.zero;

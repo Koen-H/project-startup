@@ -31,5 +31,6 @@ public class PreGameCamera : MonoBehaviour
             entry.Value.Follow = entry.Key.transform;
             entry.Value.LookAt = entry.Key.transform.Find("PointLookAt").transform;
         }
+        GameManager.Instance.StartGame();
     }
 }

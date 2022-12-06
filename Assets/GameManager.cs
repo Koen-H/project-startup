@@ -3,14 +3,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     public List<PlayerData> players = new List<PlayerData>();
+    public bool disablePlayerInput = true;
+
 
     [SerializeField] GameObject preGameCamera;
+
+    [SerializeField] PlayerData winner = null;
+
+    [SerializeField] GameObject globalCanvas;
+    [SerializeField] TextMeshProUGUI topText;
+    [SerializeField] TextMeshProUGUI centerText;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -30,6 +39,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        topText.text = "";
+        centerText.text = "Press any button to ready up!";
     }
 
     private void Update()
@@ -51,6 +62,9 @@ public class GameManager : MonoBehaviour
         if (preGameCamera != null) preGameCamera.GetComponent<PreGameCamera>().StartAnim();
         else Debug.LogError("There was no pre-game camera found!");
 
+        topText.text = "Be the first to reach the golden bread!";
+        centerText.text = "";
+        
         //preGameCamera.GetComponent<Animation>()["test"].speed
     }
 
@@ -58,19 +72,23 @@ public class GameManager : MonoBehaviour
     {
         newPlayer.name = "player " + (players.Count + 1);
         players.Add(newPlayer);
-
-        //players.disableplayermovement or something like that
+        if (disablePlayerInput) TogglePlayerInput(false);
     }
 
     public void StartGame()
     {
-        
+
         StartCoroutine(StartCountDown());
     }
 
     public void Winner(GameObject playerWon)
     {
-        Debug.Log($"{playerWon.GetComponent<PlayerData>().name} won!");
+        if (winner != null) return;
+        winner = playerWon.GetComponent<PlayerData>();
+
+        topText.text = $"{winner.GetName()} won!";
+
+        Debug.Log($"{winner.GetName()} won!");
         foreach (PlayerData player in GameManager.Instance.players)//Look at the winner
         {
             CinemachineFreeLook cam = player.gameObject.GetComponentInChildren<CinemachineFreeLook>();
@@ -79,18 +97,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TogglePlayerInput(bool allowInput)
+    {
+        foreach (PlayerData player in GameManager.Instance.players)//Look at the winner
+        {
+            player.gameObject.GetComponentInChildren<Movement>().allowInput = allowInput;
+        }
+    }
+
 
     private IEnumerator StartCountDown()
     {
         Debug.Log("Starting countdown");
-        Debug.Log("3");
+        centerText.text = "3";
         yield return new WaitForSeconds(1);//3
-        Debug.Log("2");
+        centerText.text = "2";
         yield return new WaitForSeconds(1);//2
-        Debug.Log("1");
+        centerText.text = "1";
         yield return new WaitForSeconds(1);//1
-        Debug.Log("Go!");
-        //players.enableplayermovement or something like that
+        TogglePlayerInput(true);
+        if (disablePlayerInput) TogglePlayerInput(true);
+        centerText.text = "GO!";
         yield return new WaitForSeconds(1);//Remove GO after one second
+        centerText.text = "";
     }   
 }
