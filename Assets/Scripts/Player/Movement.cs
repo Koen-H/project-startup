@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour
     float jumpmovement = 0;
     Vector2 movement2d = Vector2.zero;
     Vector2 look2d = Vector2.zero;
-    bool jumped = false;
+    bool jumped, midair = false;
 
     float time = 0;
 
@@ -78,6 +78,7 @@ public class Movement : MonoBehaviour
        if (context.canceled)
         {
             jumped = false;
+            if (!grounded) midair = true;
         }
         //Debug.Log("jumped");
 
@@ -104,6 +105,7 @@ public class Movement : MonoBehaviour
       //  Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
         grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+        if (grounded) midair = false; 
         if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
@@ -111,7 +113,7 @@ public class Movement : MonoBehaviour
         }
         if (jumped)
         {
-            if (jumpTimer > 0)
+            if (jumpTimer > 0 && !midair)
             {
                 movement.y = JUMP_FORCE / 10;
                 jumpTimer -= Time.deltaTime;
