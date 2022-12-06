@@ -16330,6 +16330,11 @@ PrefabInstance:
       propertyPath: preGameCamera
       value: 
       objectReference: {fileID: 272926014}
+    - target: {fileID: 2254617955628593502, guid: 45c3861946424af40a990d9651c09ca1,
+        type: 3}
+      propertyPath: disablePlayerInput
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2254617955628593503, guid: 45c3861946424af40a990d9651c09ca1,
         type: 3}
       propertyPath: m_Name

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,9 @@ public class PlayerSpawnLogic : MonoBehaviour
     float hologramAlphaValue;
     [SerializeField] float flickerFrequency = 10;
     [SerializeField] Material flickerMat;
-    [SerializeField] Material defaultMat;
-    [SerializeField] MeshRenderer meshRenderer;
+     Material[] flickerMats;
+    [SerializeField] Material[] defaultMat;
+    [SerializeField] SkinnedMeshRenderer meshRenderer;
 
 
 
@@ -24,6 +26,13 @@ public class PlayerSpawnLogic : MonoBehaviour
     {
         currentCheckPoint = GameObject.FindObjectOfType<CheckPoint>();
         parent = transform.parent.gameObject;
+        defaultMat = meshRenderer.materials;
+        flickerMats = meshRenderer.materials;
+        for (int i = 0; i < meshRenderer.materials.Length; i++)
+        {
+            Debug.Log("loop");
+            flickerMats[i] = flickerMat;
+        }
     }
 
     public void DespawnPlayer()
@@ -39,7 +48,8 @@ public class PlayerSpawnLogic : MonoBehaviour
         
 
         spawnProtection = true;
-        meshRenderer.material = flickerMat;
+        Debug.Log(defaultMat.Length);
+        meshRenderer.materials = flickerMats;
 
 
 
@@ -64,7 +74,7 @@ public class PlayerSpawnLogic : MonoBehaviour
             spawnProtectionTimer = 0;
             flickerMat.SetFloat("_Alpha", 1);
             spawnProtection = false;
-            meshRenderer.material = defaultMat; 
+            meshRenderer.materials = defaultMat; 
 
         }
 

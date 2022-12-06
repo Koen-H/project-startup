@@ -7,13 +7,15 @@ public class EffectSwitchP2 : MonoBehaviour
 {
     // Start is called before the first frame update
     bool doAnimate = true;
-    MeshRenderer meshRenderer;
-    Material defaultMat;
-    Material teleportMat;
+
+    [SerializeField] Material teleportMat;
+    Material[] flickerMats;
+    [SerializeField] Material[] defaultMat;
+    [SerializeField] SkinnedMeshRenderer meshRenderer;
 
     public void Start()
     {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         defaultMat = meshRenderer.material;
         teleportMat = Resources.Load<Material>("Materials/TeleportMat");
         StartCoroutine(Animate());
