@@ -442,7 +442,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1092194980
 GameObject:
@@ -551,7 +551,7 @@ PrefabInstance:
     - target: {fileID: 2254617955628593489, guid: 45c3861946424af40a990d9651c09ca1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2254617955628593489, guid: 45c3861946424af40a990d9651c09ca1,
         type: 3}
@@ -608,6 +608,11 @@ PrefabInstance:
       propertyPath: preGameCamera
       value: 
       objectReference: {fileID: 1338712620}
+    - target: {fileID: 2254617955628593502, guid: 45c3861946424af40a990d9651c09ca1,
+        type: 3}
+      propertyPath: disablePlayerInput
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2254617955628593503, guid: 45c3861946424af40a990d9651c09ca1,
         type: 3}
       propertyPath: m_Name
@@ -625,7 +630,7 @@ PrefabInstance:
     - target: {fileID: 4680264358614159392, guid: 83472d418aa1eb74984d8fa868f94e2a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4680264358614159392, guid: 83472d418aa1eb74984d8fa868f94e2a,
         type: 3}
@@ -786,7 +791,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1509614352
 PrefabInstance:
@@ -883,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 6426187548386521677, guid: be541dad1ea947a44a385e479764935a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6426187548386521677, guid: be541dad1ea947a44a385e479764935a,
         type: 3}
