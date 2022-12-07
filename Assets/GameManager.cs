@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI topText;
     [SerializeField] TextMeshProUGUI centerText;
 
+    AudioManager audioManager;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        audioManager = AudioManager.Instance;
     }
     private void Start()
     {
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
             cam.LookAt = playerWon.transform.Find("PointLookAt").transform;
         }
         StartCoroutine(WinnerCountDown());
+
     }
 
     public void TogglePlayerInput(bool allowInput)
@@ -129,5 +133,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
         SceneManager.LoadScene("StartMenuScene");
+
+       audioManager.Play("WinnerMusic");
     }
 }
