@@ -1,6 +1,8 @@
+/*
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+
 
 [CustomEditor(typeof(GeometryGrassPainter))]
 public class GrassPainterEditor : Editor
@@ -80,3 +82,4 @@ public class GrassPainterEditor : Editor
     }
 
 }
+*/
