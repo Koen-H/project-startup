@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     public void AddPlayer(PlayerData newPlayer)
     {
         newPlayer.name = "player " + (players.Count + 1);
+        newPlayer.SetName(newPlayer.name);
         players.Add(newPlayer);
         if (disablePlayerInput) TogglePlayerInput(false);
     }

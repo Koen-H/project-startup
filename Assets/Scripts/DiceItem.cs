@@ -23,7 +23,8 @@ public class DiceItem : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != 4) return;
+        if (other.gameObject.GetComponent<KillObject>()){
+
         // Find the nearest player
         GameObject nearestPlayer = FindNearestPlayer();
 
@@ -39,10 +40,12 @@ public class DiceItem : MonoBehaviour
 
         // Add force in the direction of the player to bounce the object away from the trigger
         GetComponent<Rigidbody>().AddForce(direction * bounceForce, ForceMode.Impulse);
+        }
+
     }
 
     // Finds the nearest player game object
-    GameObject FindNearestPlayer()
+    public GameObject FindNearestPlayer()
     {
         // Find all objects with the "Player" tag
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
