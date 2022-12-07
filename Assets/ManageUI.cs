@@ -12,6 +12,8 @@ public class ManageUI : MonoBehaviour
     [SerializeField] Image imagePlayerOne;
     [SerializeField] Image imagePlayerTwo;
 
+    [SerializeField] GameObject UI;
+
     PlayerInventory PlayerOneInventory;
     PlayerInventory PlayerTwoInventory;
 
@@ -58,5 +60,14 @@ public class ManageUI : MonoBehaviour
                 imagePlayerOne.sprite = pictureBarrel;
                 break;
         }
+    }
+
+    public void EnabeUI()
+    {
+        UI.SetActive(true);
+    }
+    public void DisableUI()
+    {
+        UI.SetActive(false);
     }
 }
