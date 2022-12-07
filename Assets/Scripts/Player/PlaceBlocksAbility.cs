@@ -95,6 +95,10 @@ public class PlaceBlocksAbility : MonoBehaviour
             objectPlaced.SetActive(true);
             objectPlaced.layer = 3;
             cooldownTimer = COOLDOWN_BLOCK_PLACING;
+            if (objectPlaced.GetComponent<BarrelMovement>())
+            {
+                objectPlaced.GetComponent<BarrelMovement>().isHologram = false;
+            }
         }
     }
 

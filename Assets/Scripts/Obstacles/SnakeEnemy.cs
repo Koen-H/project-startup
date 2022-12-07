@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class SnakeEnemy : DiceItem
@@ -22,6 +24,13 @@ public class SnakeEnemy : DiceItem
 
     private void FixedUpdate()
     {
-        transform.LookAt(FindNearestPlayer().transform);
+        try
+        {
+            transform.LookAt(FindNearestPlayer().transform);
+        }
+        catch (Exception e)
+        {
+            // Do nothing :)
+        }
     }
 }
