@@ -60,9 +60,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Switch",
+                    "name": "SwitchItemForward",
                     "type": "PassThrough",
                     "id": "933e2a96-f725-4077-a124-3f1230130cc5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchItemBackward",
+                    "type": "PassThrough",
+                    "id": "876768cf-7eb6-4bbe-99cb-d40b49fcdab5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -359,33 +368,44 @@
                 {
                     "name": "",
                     "id": "33ee5dd6-1f2f-49a3-8e30-f3322f21afda",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Switch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "48b164d6-0ae0-4190-b429-29c0ef6ca30b",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Switch",
+                    "groups": "Gamepad",
+                    "action": "SwitchItemForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c0999866-c838-4556-b023-f1c1db2946ea",
-                    "path": "<Keyboard>/h",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Switch",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchItemForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be0c53cc-a896-46e1-a913-f90128ff90ac",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SwitchItemBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5bee5f2-6816-463d-8b1d-9ceac1d9818c",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchItemBackward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
