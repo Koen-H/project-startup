@@ -9,15 +9,22 @@ public class EffectSwitchP2 : MonoBehaviour
     bool doAnimate = true;
 
     [SerializeField] Material teleportMat;
-    Material[] flickerMats;
+    Material[] teleportMats;
     [SerializeField] Material[] defaultMat;
     [SerializeField] SkinnedMeshRenderer meshRenderer;
 
     public void Start()
     {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        defaultMat = meshRenderer.material;
+        defaultMat = meshRenderer.materials;
         teleportMat = Resources.Load<Material>("Materials/TeleportMat");
+
+        teleportMats = meshRenderer.materials;
+        for (int i = 0; i < meshRenderer.materials.Length; i++)
+        {
+            Debug.Log("loop");
+            teleportMats[i] = teleportMat;
+        }
         StartCoroutine(Animate());
     }
 
@@ -25,7 +32,7 @@ public class EffectSwitchP2 : MonoBehaviour
     {
         //Set animation back to normal and then destroy
         doAnimate = false;
-        meshRenderer.material = defaultMat;
+        meshRenderer.materials = defaultMat;
         Destroy(this);
     }
 
@@ -35,9 +42,9 @@ public class EffectSwitchP2 : MonoBehaviour
     {
         while (doAnimate)
         {
-            meshRenderer.material = teleportMat;
+            meshRenderer.materials = teleportMats;
             yield return new WaitForSeconds(0.5f);
-            meshRenderer.material = defaultMat;
+            meshRenderer.materials = defaultMat;
             yield return new WaitForSeconds(0.5f);
         }
         
