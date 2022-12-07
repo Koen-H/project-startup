@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] GameObject preGameCamera;
+    [SerializeField] GameObject GameUI;
+    [SerializeField] GameObject waitingForPlayersIMG;
 
     [SerializeField] PlayerData winner = null;
 
@@ -22,7 +25,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI topText;
     [SerializeField] TextMeshProUGUI centerText;
 
-    AudioManager audioManager;
+    AudioSource backgroundMusic;
+    [SerializeField] AudioClip raceCountdown1;
+    [SerializeField] AudioClip raceCountdown2;
+    [SerializeField] AudioClip raceCountdown3;
+    [SerializeField] AudioClip raceStart;
+    [SerializeField] AudioClip raceLoop;
+    [SerializeField] AudioClip raceWin;
+
+
+
+
+   // AudioManager audioManager;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -33,17 +47,20 @@ public class GameManager : MonoBehaviour
 
             return _instance;
         }
+
     }
 
     private void Awake()
     {
         _instance = this;
-        audioManager = AudioManager.Instance;
+        backgroundMusic = this.GetComponent<AudioSource>();
     }
     private void Start()
     {
-        topText.text = "";
-        centerText.text = "Press any button to ready up!";
+        topText.text = $"Currently {players.Count} players detected. Game auto-starts at 2!";
+        centerText.text = "Press any button to ready up and join the game. ";
+        //audioManager = AudioManager.Instance;
+        
     }
 
     private void Update()
@@ -64,7 +81,8 @@ public class GameManager : MonoBehaviour
     {
         if (preGameCamera != null) preGameCamera.GetComponent<PreGameCamera>().StartAnim();
         else Debug.LogError("There was no pre-game camera found!");
-
+        GameUI.SetActive(true);
+        waitingForPlayersIMG.SetActive(false);
         topText.text = "Be the first to reach the golden bread!";
         centerText.text = "";
         
@@ -76,6 +94,7 @@ public class GameManager : MonoBehaviour
         newPlayer.name = "player " + (players.Count + 1);
         newPlayer.SetName(newPlayer.name);
         players.Add(newPlayer);
+        topText.text = $"Currently {players.Count} players detected. Game auto-starts at 2!";
         if (disablePlayerInput) TogglePlayerInput(false);
         if (players.Count == 2) GameReady();//For now, it's a 1v1 so we start the game once 2 players are connected.
     }
@@ -117,23 +136,37 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Starting countdown");
         centerText.text = "3";
+        backgroundMusic.clip = raceCountdown3;
+        backgroundMusic.Play();
         yield return new WaitForSeconds(1);//3
         centerText.text = "2";
+        backgroundMusic.clip = raceCountdown2;
+        backgroundMusic.Play();
         yield return new WaitForSeconds(1);//2
         centerText.text = "1";
+        backgroundMusic.clip = raceCountdown1;
+        backgroundMusic.Play();
         yield return new WaitForSeconds(1);//1
         TogglePlayerInput(true);
         if (disablePlayerInput) TogglePlayerInput(true);
         centerText.text = "GO!";
-        yield return new WaitForSeconds(1);//Remove GO after one second
+        backgroundMusic.clip = raceStart;
+        backgroundMusic.Play();
+        yield return new WaitForSeconds(1.5f);//Remove GO after one second
+        backgroundMusic.clip = raceLoop;
+        backgroundMusic.loop = true;
+        backgroundMusic.Play();
         centerText.text = "";
     }
 
     private IEnumerator WinnerCountDown()
     {
+        backgroundMusic.clip = raceWin;
+        backgroundMusic.Play();
+        backgroundMusic.loop = false;
         yield return new WaitForSeconds(10);
         SceneManager.LoadScene("StartMenuScene");
 
-       audioManager.Play("WinnerMusic");
+       
     }
 }

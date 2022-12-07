@@ -66,7 +66,12 @@ public class PlaceBlocksAbility : MonoBehaviour
             return;
         }
         RaycastHit hit;
-        if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out hit, float.MaxValue,placeAbleLayer) || Physics.Raycast(blockPlacePosition.position, Vector3.down, out hit, float.MaxValue, waterLayer))
+        RaycastHit hitWater;
+        RaycastHit hitGround;
+        Physics.Raycast(blockPlacePosition.position, Vector3.down, out hitWater, float.MaxValue, waterLayer);
+        Physics.Raycast(blockPlacePosition.position, Vector3.down, out hitGround, float.MaxValue, placeAbleLayer);
+        hit = (hitWater.distance < hitGround.distance) ? hitWater : hitGround;
+        if (hit.collider != null)
         {
             //if(hitLayer == placeAbleLayer || hitLayer == waterLayer)
           //  Debug.Log("Ray hit !! ");

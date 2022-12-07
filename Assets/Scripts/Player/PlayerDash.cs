@@ -21,6 +21,8 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] bool CONSTANT_PUSH = false;
     [SerializeField] bool NO_DASH = false;
     [SerializeField] float force = 500f;
+    [SerializeField] bool useExplosionDash;
+    [SerializeField] float explosionDashForce = 500f;
 
     [Header("Setup")]
     [SerializeField] GameObject parent;
@@ -61,12 +63,21 @@ public class PlayerDash : MonoBehaviour
             //Debug.Log("past");
             Rigidbody bumpPlayerRigidBody = bumpPlayer.gameObject.GetComponent<Rigidbody>();
 
-            //No up bumping allowed
-            bumpDirection.y = 0;
-            bumpDirection.Normalize();
-            bumpDirection *= (Time.deltaTime * force);
-            bumpPlayerRigidBody.AddForce(bumpDirection, ForceMode.Impulse);
+            if (!useExplosionDash)
+            {
+                //No up bumping allowed
+                bumpDirection.y = 0;
+                bumpDirection.Normalize();
+                bumpDirection *= (Time.deltaTime * force);
+                bumpPlayerRigidBody.AddForce(bumpDirection, ForceMode.Impulse);
 
+                
+            }
+            else if (useExplosionDash)
+            {
+                bumpPlayerRigidBody.AddExplosionForce(explosionDashForce, transform.position, Vector3.Distance(transform.position, bumpPlayer.transform.position) * 2);
+                this.GetComponent<Rigidbody>().AddExplosionForce(explosionDashForce, transform.position, Vector3.Distance(transform.position, bumpPlayer.transform.position) * 2);
+            }
             bumpPlayer = null;
         }
     }
