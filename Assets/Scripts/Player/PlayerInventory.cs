@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class PlayerInventory : MonoBehaviour
     int currentBlockIndex = 0;
     PlaceBlocksAbility place;
 
+    public event EventHandler OnSwitchItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +23,17 @@ public class PlayerInventory : MonoBehaviour
     public void SwitchNextItem(InputAction.CallbackContext context)
     {
         NextItem();
+        OnSwitchItem?.Invoke(this, EventArgs.Empty);
     }
     public void SwitchPreviousItem(InputAction.CallbackContext context)
     {
         PreviousItem();
+        OnSwitchItem?.Invoke(this, EventArgs.Empty);
     }
 
-
+    public int GetCurrentIndex() { 
+        return currentBlockIndex;
+    }
 
     void NextItem()
     {
