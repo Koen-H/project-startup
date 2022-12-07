@@ -226,8 +226,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: aef7ffff
-      m_LastClickedID: -2130
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 14fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -3826,9 +3826,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -20.645473, y: 11.950221, z: 278.86765}
+    m_Target: {x: -108.11867, y: -94.294846, z: 110.84418}
     speed: 2
-    m_Value: {x: -20.645473, y: 11.950221, z: 278.86765}
+    m_Value: {x: -108.11867, y: -94.294846, z: 110.84418}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -3879,9 +3879,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.31228277, y: 0.29303733, z: -0.10131702, w: -0.89796627}
   m_Size:
-    m_Target: 12.509548
+    m_Target: 105.19069
     speed: 2
-    m_Value: 12.509548
+    m_Value: 105.19069
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -3977,21 +3977,21 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Shaders
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Shaders
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\thoma\Documents\GitHub\project-startup
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 427.80002}
-    m_SelectedIDs: c67c0000
-    m_LastClickedID: 31942
+    scrollPos: {x: 0, y: 299.80002}
+    m_SelectedIDs: b87c0000
+    m_LastClickedID: 31928
     m_ExpandedIDs: 000000004c7c00004e7c0000507c0000527c0000547c0000567c0000587c00005a7c00005c7c0000847c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -4045,9 +4045,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: aef7ffff
-    m_LastClickedInstanceID: -2130
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000980a0100e00a0100bad6000032ef0000c4910000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -4072,7 +4072,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 54.80002}
     m_GridSize: 16
   m_SkipHiddenPackages: 1
   m_DirectoriesAreaWidth: 207
@@ -4107,7 +4107,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -2130
+  m_LastSelectedObjectID: 29816
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -4266,7 +4266,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 411.2
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
