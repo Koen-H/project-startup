@@ -49,10 +49,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterDiceDelay: 0
-  EXPLOSION_RADIUS: 4
+  bounceForce: 10
+  EXPLOSION_RADIUS: 8
   flickerMat: {fileID: 2100000, guid: 8ebc45984fabcf64a8f654efb60ecb9a, type: 2}
   defaultMat: {fileID: 2100000, guid: c89f6acca43b20d4c903159c86e2c7a9, type: 2}
   meshRenderer: {fileID: 6027212904150093369}
+  explostionDuraition: 1
   explosionForce: 1000
   doExplode: 0
   bomb: {fileID: 3412090043052845864}

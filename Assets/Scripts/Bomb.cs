@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -13,6 +14,10 @@ public class Bomb : DiceItem
 
     Vector3 origin;
     Vector3 direction;
+
+    float explostionTimer;
+    [SerializeField] float explostionDuraition;
+    bool gottaExplode; 
 
     [SerializeField] float explosionForce = 500f;
     [SerializeField] bool doExplode = false;
@@ -52,14 +57,17 @@ public class Bomb : DiceItem
         //}
         origin = transform.position;
         
-       if (doExplode && !exploded) Explode();
+       //if (doExplode && !exploded) Explode();
         
     }
     private void FixedUpdate() // Dont fuck with it unless you wanna fix it 
     {
+
         if (afterDiceDelay)
         {
-            t += Time.deltaTime;
+           // gottaExplode = true; 
+        if (gottaExplode && !exploded) ExplosionTimer(); 
+            t += Time.deltaTime*2;
 
             float vlaue = 10 * Mathf.Cos(t * 20) * Mathf.Sin(t * 16) * Mathf.Cos(t * 30 + 2);
 
@@ -67,7 +75,7 @@ public class Bomb : DiceItem
             expand = expandFactor + vlaue;
             if (t > 2) expand = 1;
             float explodeFactor = Mathf.Lerp(0, 100, t - 2);
-            if (t > 2.1f) doExplode = true; // The float is the time when it explodes
+            if (t > 2.1f) gottaExplode = true; // The float is the time when it explodes
 
             explode = explodeFactor;
 
@@ -85,6 +93,27 @@ public class Bomb : DiceItem
 
     }
 
+    void ExplosionTimer()
+    {
+        explostionTimer += Time.deltaTime;
+        if (explostionTimer > explostionDuraition)
+        {
+            exploded = true;
+            gottaExplode = false; 
+        }
+
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, EXPLOSION_RADIUS, transform.forward * 0.1f, 1f);
+        //Debug.Log(hits.Length);
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.rigidbody == null || hit.rigidbody == this.gameObject.GetComponent<Rigidbody>()) continue;
+            float force = explosionForce * hit.rigidbody.mass;
+            //Debug.Log(force);
+            hit.rigidbody.AddExplosionForce(force, this.transform.position, EXPLOSION_RADIUS);
+        }
+
+
+    }
     void Explode()
     {
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, EXPLOSION_RADIUS, transform.forward * 0.1f, 1f);

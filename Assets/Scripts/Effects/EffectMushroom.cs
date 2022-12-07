@@ -17,6 +17,8 @@ public class EffectMushroom : MonoBehaviour
     //For how long does this effect stay?
     public float growthDuration = 8;
 
+    Movement bruh; 
+
     float startTime;
     float t = 1;
     float scale = 0;
@@ -30,6 +32,7 @@ public class EffectMushroom : MonoBehaviour
         originalScale = transform.localScale;
         targetScale = Vector3.one + originalScale * (growthStrength * 0.9f);
         startTime = Time.time;
+        bruh = GetComponent<Movement>();
 
         //If this effect is already active, extend the duration on the other component, if not. Start the coroutine!
         growing = true;
@@ -53,9 +56,10 @@ public class EffectMushroom : MonoBehaviour
                 Vector3 position = this.gameObject.transform.position;
 
                 Physics.Raycast(position, direction, out RaycastHit hit, 2);
-                if (hit.collider != null && hit.distance < closestPlayerDistance && hit.collider.gameObject.layer == 6) ApplyEffect(hit.collider.gameObject);
+                if (hit.collider != null && hit.collider.gameObject.layer == 6) ApplyEffect(hit.collider.gameObject);
 
                 Debug.DrawRay(position, direction * 2, Color.red);
+                bruh.SetPlayerSpeed(bruh.GetStandardSpeed() * 2); 
 
             }
         }
@@ -132,7 +136,9 @@ public class EffectMushroom : MonoBehaviour
             shrinking = false;
             isFullyGrown = false;
             this.transform.localScale = originalScale;
+            bruh.SetStandardSpeed();
             Destroy(this);
+
         }
     }
 
