@@ -37,13 +37,13 @@ public class ManageUI : MonoBehaviour
     private void PlayerTwoInventory_OnSwitchItem(object sender, System.EventArgs e)
     {
         Debug.Log("Switches Two");
-        switch (PlayerOneInventory.GetCurrentIndex()) 
+        switch (PlayerTwoInventory.GetCurrentIndex()) 
         {
             case 0:
-                imagePlayerOne.sprite = pictureBlock;
+                imagePlayerTwo.sprite = pictureBarrel;
                 break;
             case 1:
-                imagePlayerOne.sprite = pictureBarrel;
+                imagePlayerTwo.sprite = pictureBlock;
                 break;
         }
     }
@@ -54,10 +54,10 @@ public class ManageUI : MonoBehaviour
         switch (PlayerOneInventory.GetCurrentIndex())
         {
             case 0:
-                imagePlayerOne.sprite = pictureBlock;
+                imagePlayerOne.sprite = pictureBarrel;
                 break;
             case 1:
-                imagePlayerOne.sprite = pictureBarrel;
+                imagePlayerOne.sprite = pictureBlock;
                 break;
         }
     }
