@@ -6,10 +6,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.UI;
+using static UnityEngine.LightAnchor;
 
 public class Movement : MonoBehaviour
 {
-
+    Animator playerAnimator;
     public bool allowInput = true;
     //  [Space(10)]
     [Header("Changable")]
@@ -32,7 +33,7 @@ public class Movement : MonoBehaviour
     float jumpmovement = 0;
     Vector2 movement2d = Vector2.zero;
     Vector2 look2d = Vector2.zero;
-    bool jumped = false;
+    bool jumped, midair = false;
 
     float time = 0;
 
@@ -53,7 +54,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         SetStandardSpeed();
-
+        playerAnimator = GetComponentInChildren<Animator>();
 
     }
     public void Move(InputAction.CallbackContext context)
@@ -64,8 +65,12 @@ public class Movement : MonoBehaviour
 
         // Debug.Log("Moving");
         //  movement2d = context.ReadValue<Vector2>();
-        if (grounded) moving = context.ReadValue<Vector2>();
-        else moving = Vector2.zero;
+ 
+        moving = Vector2.zero;
+        moving = context.ReadValue<Vector2>();
+        
+
+
         // Debug.Log(moving);
     }
     public void Jump(InputAction.CallbackContext context)
@@ -83,6 +88,7 @@ public class Movement : MonoBehaviour
        if (context.canceled)
         {
             jumped = false;
+            if (!grounded) midair = true;
         }
         //Debug.Log("jumped");
 
@@ -97,9 +103,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
-        
+        //playerAnimator.SetBool("jumping", true);
+
+        //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
+
         movement2d = Vector2.zero;
         movement2d = moving;
 
@@ -110,27 +117,47 @@ public class Movement : MonoBehaviour
       //  Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
         grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+
+        if (!grounded)
+        {
+            for (int i = 0; i < 360; i += 4)
+            {
+                float angle = i * Mathf.Deg2Rad;
+                Vector3 direction = new Vector3(Mathf.Cos(angle) / 5, -0.5f, Mathf.Sin(angle) / 5);
+                Vector3 position = new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z);
+
+                grounded = Physics.Raycast(position, direction, out RaycastHit hit, .4f);
+
+                if (grounded) return;
+                Debug.DrawRay(position, direction * 2, Color.red);
+
+            }
+        }
+        if (grounded) midair = false; 
         if (jumped && grounded)
         {
             movement.y = JUMP_FORCE;
             jumpTimer = jumpMaxTime;
         }
+        playerAnimator.SetBool("jumping", false);
         if (jumped)
         {
-            if (jumpTimer > 0)
+            if (jumpTimer > 0 && !midair)
             {
                 movement.y = JUMP_FORCE / 10;
                 jumpTimer -= Time.deltaTime;
             }
+            playerAnimator.SetBool("jumping", true);
         }
-     
+
 
 
         Vector3 movement3dAngle = new Vector3(movement2d.x, 0, movement2d.y);
         Quaternion from = transform.rotation;
+        playerAnimator.SetBool("walking", false);
         if (movement2d != Vector2.zero)
         {
-
+            playerAnimator.SetBool("walking", true);
             angle = Vector3.Angle(Vector3.forward, movement3dAngle);
          //   Debug.Log(angle);
 

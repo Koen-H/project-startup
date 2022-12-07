@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        DontDestroyOnLoad(this);
     }
     private void Start()
     {
