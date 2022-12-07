@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         newPlayer.SetName(newPlayer.name);
         players.Add(newPlayer);
         if (disablePlayerInput) TogglePlayerInput(false);
+        if (players.Count == 2) GameReady();//For now, it's a 1v1 so we start the game once 2 players are connected.
     }
 
     public void StartGame()
@@ -95,6 +97,7 @@ public class GameManager : MonoBehaviour
             cam.Follow = playerWon.transform;
             cam.LookAt = playerWon.transform.Find("PointLookAt").transform;
         }
+        StartCoroutine(WinnerCountDown());
     }
 
     public void TogglePlayerInput(bool allowInput)
@@ -120,5 +123,11 @@ public class GameManager : MonoBehaviour
         centerText.text = "GO!";
         yield return new WaitForSeconds(1);//Remove GO after one second
         centerText.text = "";
-    }   
+    }
+
+    private IEnumerator WinnerCountDown()
+    {
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("StartMenuScene");
+    }
 }

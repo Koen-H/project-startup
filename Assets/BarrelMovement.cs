@@ -8,10 +8,12 @@ public class BarrelMovement : MonoBehaviour
 
     [SerializeField] private float MOVE_SPEED = 1000;
     private Rigidbody rb;
+    private Vector3 frwrd;
     // Start is called before the first frame update
     void Start()
     {
         rb= GetComponent<Rigidbody>();
+        frwrd = transform.forward *-1;
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class BarrelMovement : MonoBehaviour
         rot.eulerAngles = new Vector3(0, rot.eulerAngles.y, 0);
 
 
-        Vector3 moveDir = MOVE_SPEED * (rot * Vector3.forward);
+        Vector3 moveDir = MOVE_SPEED * (rot * frwrd);
         moveDir *= -1;
 
         rb.AddRelativeForce(moveDir);
