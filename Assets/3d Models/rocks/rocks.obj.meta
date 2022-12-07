@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a8eae8f0ac3a92a4cb01c6ac3441b075
+guid: f39c516137f123047bae1b37e9d37143
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: barrel_low_polyMat
-    second: {fileID: 2100000, guid: 86891cc4c26647c49a3620b3221b6d45, type: 2}
+      name: pPlatonic1Mat
+    second: {fileID: 2100000, guid: b3031f76bac8a1145a1a0710db75f0a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pPlatonic1_group1Mat
+    second: {fileID: 2100000, guid: b3031f76bac8a1145a1a0710db75f0a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pPlatonic1_groupMat
+    second: {fileID: 2100000, guid: b3031f76bac8a1145a1a0710db75f0a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__pasted__pPlatonic1_pasted__group1_group2Mat
+    second: {fileID: 2100000, guid: b3031f76bac8a1145a1a0710db75f0a2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
