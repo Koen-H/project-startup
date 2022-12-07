@@ -9,17 +9,19 @@ public class BarrelMovement : MonoBehaviour
     [SerializeField] private float MOVE_SPEED = 1000;
     private Rigidbody rb;
     private Vector3 frwrd;
+    public bool isHologram = true;
     // Start is called before the first frame update
     void Start()
     {
         rb= GetComponent<Rigidbody>();
         frwrd = transform.forward *-1;
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        if (isHologram) return;
         Quaternion rot = transform.rotation;
 
         rot.eulerAngles = new Vector3(0, rot.eulerAngles.y, 0);
@@ -37,7 +39,7 @@ public class BarrelMovement : MonoBehaviour
 
     private void Update()
     {
-        float closestPlayerDistance = float.MaxValue;
+        if (isHologram) return;
 
         for (int i = 0; i < 360; i += 4)
         {

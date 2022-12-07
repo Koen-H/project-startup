@@ -23,7 +23,7 @@ public class ObstacleSpawnField : MonoBehaviour
         GameObject newObstacleObject = Instantiate(obstacleObjects[obstacleIndex]);
         newObstacleObject.transform.position = transform.position + Vector3.forward * mag / 2;
         newObstacleObject.transform.RotateAround(transform.position, Vector3.up, angle);
-        newObstacleObject.layer = ground;
+        // newObstacleObject.layer = ground;
 
         //Debug.DrawRay(newObstacleObject.transform.position, Vector3.down, Color.red, float.MaxValue);
 
