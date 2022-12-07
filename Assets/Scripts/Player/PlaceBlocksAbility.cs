@@ -14,6 +14,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     public GameObject hologramPrefab;
     [SerializeField] Transform blockPlacePosition;
     [SerializeField] LayerMask placeAbleLayer;
+    [SerializeField] LayerMask waterLayer;
     public GameObject placeBlock;
     [SerializeField] Material holoMat;
     Vector3 placePoint;
@@ -44,7 +45,7 @@ public class PlaceBlocksAbility : MonoBehaviour
 
         for (int i = 0; i < hologramPrefab.transform.childCount; i++)
         {
-            placeBlock.transform.GetChild(i).GetComponent<Renderer>().material = holoMat;
+            placeBlock.transform.GetChild(i).GetComponentInChildren<Renderer>().material = holoMat;
             placeBlock.layer = 0;
         }
         placeBlock.transform.position = placePoint + blockPrefab.transform.position;
@@ -64,9 +65,10 @@ public class PlaceBlocksAbility : MonoBehaviour
             placeBlock.transform.position = new Vector3(100, 100, 100);
             return;
         }
-
-        if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out RaycastHit hit, float.MaxValue,placeAbleLayer))
+        RaycastHit hit;
+        if (Physics.Raycast(blockPlacePosition.position, Vector3.down, out hit, float.MaxValue,placeAbleLayer) || Physics.Raycast(blockPlacePosition.position, Vector3.down, out hit, float.MaxValue, waterLayer))
         {
+            //if(hitLayer == placeAbleLayer || hitLayer == waterLayer)
           //  Debug.Log("Ray hit !! ");
             placePoint = hit.point;
          //   Debug.Log(placePoint);

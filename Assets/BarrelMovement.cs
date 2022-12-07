@@ -30,4 +30,39 @@ public class BarrelMovement : MonoBehaviour
 
        
     }
+
+
+
+    private void Update()
+    {
+        float closestPlayerDistance = float.MaxValue;
+
+        for (int i = 0; i < 360; i += 4)
+        {
+            float angle = i * Mathf.Deg2Rad;
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+            Vector3 position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y -0.5f, this.gameObject.transform.position.z);
+
+            Physics.Raycast(position, direction, out RaycastHit hit, 2);
+            if (hit.collider != null && hit.collider.gameObject.layer == 6) ApplyEffect(hit.collider.gameObject);
+
+            Debug.DrawRay(position, direction * 2, Color.red);
+
+        }
+    }
+
+
+    private void ApplyEffect(GameObject obj)
+    {
+        if (obj.GetComponent<EffectFlatten>() != null)
+        {
+            obj.GetComponent<EffectFlatten>().flattenDuration = 4;
+            Debug.Log("Already flattened, extended duration!");
+        }
+        else if (obj.GetComponent<EffectMushroom>() != null)
+        {
+            Debug.Log("Not shrinking, is using mushroom");
+        }
+        else obj.AddComponent<EffectFlatten>();
+    }
 }
