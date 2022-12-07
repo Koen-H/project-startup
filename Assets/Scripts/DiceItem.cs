@@ -42,7 +42,7 @@ public class DiceItem : MonoBehaviour
     }
 
     // Finds the nearest player game object
-    GameObject FindNearestPlayer()
+    public GameObject FindNearestPlayer()
     {
         // Find all objects with the "Player" tag
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
