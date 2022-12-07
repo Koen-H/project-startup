@@ -17,14 +17,14 @@ public class PlayerSwap : DiceItem
                 Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
                 Vector3 position = this.gameObject.transform.position;
 
-                Physics.Raycast(position, direction, out RaycastHit hit, 0.4f);
+                Physics.Raycast(position, direction, out RaycastHit hit, 1.5f);
                 if (hit.collider != null && hit.distance < closestPlayerDistance && hit.collider.gameObject.layer == 6)
                 {
                     ApplyEffect(hit.collider.gameObject);
                     break;
                 }
 
-                Debug.DrawRay(position, direction * 0.4f, Color.red);
+                Debug.DrawRay(position, direction * 1.5f, Color.red);
 
             }
         }

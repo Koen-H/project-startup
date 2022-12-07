@@ -23,23 +23,24 @@ public class DiceItem : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<KillObject>()){
+        if (other.gameObject.GetComponent<KillObject>())
+        {
 
-        // Find the nearest player
-        GameObject nearestPlayer = FindNearestPlayer();
+            // Find the nearest player
+            GameObject nearestPlayer = FindNearestPlayer();
 
-        // Calculate the direction from the object to the nearest player
-        Vector3 direction = nearestPlayer.transform.position - transform.position;
-
-       
+            // Calculate the direction from the object to the nearest player
+            Vector3 direction = nearestPlayer.transform.position - transform.position;
 
 
-        // Normalize the direction vector
-        direction = direction.normalized;
-        direction += Vector3.up * 2;
 
-        // Add force in the direction of the player to bounce the object away from the trigger
-        GetComponent<Rigidbody>().AddForce(direction * bounceForce, ForceMode.Impulse);
+
+            // Normalize the direction vector
+            direction = direction.normalized;
+            direction += Vector3.up * 2;
+
+            // Add force in the direction of the player to bounce the object away from the trigger
+            GetComponent<Rigidbody>().AddForce(direction * bounceForce, ForceMode.Impulse);
         }
 
     }
