@@ -22,13 +22,20 @@ public class PlayerInventory : MonoBehaviour
 
     public void SwitchNextItem(InputAction.CallbackContext context)
     {
-        NextItem();
-        OnSwitchItem?.Invoke(this, EventArgs.Empty);
+
+        if (context.canceled)
+        {
+            NextItem();
+            OnSwitchItem?.Invoke(this, EventArgs.Empty);
+        }
     }
     public void SwitchPreviousItem(InputAction.CallbackContext context)
     {
-        PreviousItem();
-        OnSwitchItem?.Invoke(this, EventArgs.Empty);
+        if (context.started)
+        {
+            PreviousItem();
+            OnSwitchItem?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public int GetCurrentIndex() { 
@@ -37,13 +44,15 @@ public class PlayerInventory : MonoBehaviour
 
     void NextItem()
     {
+        Debug.Log("Next");
         currentBlockIndex++;
-        if (currentBlockIndex > playerStorage.Count + 1) currentBlockIndex = 0;
+        if (currentBlockIndex >= playerStorage.Count) currentBlockIndex = 0;
         BlockPlacing();
 
     }
 
     void PreviousItem() {
+        Debug.Log("Prev");
         currentBlockIndex--;
         if (currentBlockIndex < 0) currentBlockIndex = playerStorage.Count - 1;
         Debug.Log(currentBlockIndex);
