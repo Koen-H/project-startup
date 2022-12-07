@@ -18,6 +18,8 @@ public class PlayerInputController : MonoBehaviour
 
     private GameManager gameManager;
 
+    private ManageUI manage;
+
     private void Awake()
     {
         playerInputManager = this.GetComponent<PlayerInputManager>();
@@ -25,6 +27,8 @@ public class PlayerInputController : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+
+        manage = GameObject.FindObjectOfType<ManageUI>();
     }
 
     private void OnEnable()
@@ -53,6 +57,9 @@ public class PlayerInputController : MonoBehaviour
         
         if(startingPoints.Count > 1) playerParent.position = startingPoints[players.Count - 1].position;
         else if (startingPoints.Count == 1) playerParent.position = startingPoints[0].position;
+
+        Debug.Log(manage);
+        manage.AddPlayer(playerParent);
 
         /*playerParent.GetComponentInChildren<InputHandler>().look = player.actions.FindAction("Look");
         Debug.Log(playerParent.GetComponentInChildren<InputHandler>());

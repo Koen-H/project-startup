@@ -17,6 +17,7 @@ public class ManageUI : MonoBehaviour
 
     public void AddPlayer(Transform player)
     {
+        Debug.Log("Added player");
         if (PlayerOneInventory == null)
         {
             PlayerOneInventory = player.GetComponentInChildren<PlayerInventory>();
@@ -33,6 +34,7 @@ public class ManageUI : MonoBehaviour
 
     private void PlayerTwoInventory_OnSwitchItem(object sender, System.EventArgs e)
     {
+        Debug.Log("Switches Two");
         switch (PlayerOneInventory.GetCurrentIndex()) 
         {
             case 0:
@@ -46,6 +48,7 @@ public class ManageUI : MonoBehaviour
 
     private void PlayerOneInventory_OnSwitchItem(object sender, System.EventArgs e)
     {
+        Debug.Log("Switches One");
         switch (PlayerOneInventory.GetCurrentIndex())
         {
             case 0:
