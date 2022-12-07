@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 933425644787404524}
   - component: {fileID: 2536053166586225884}
   - component: {fileID: 433022579328312422}
+  - component: {fileID: 7775604923539255311}
   m_Layer: 3
   m_Name: BarrelPrefab
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933425644787404525}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -144,8 +145,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MOVE_SPEED: 1000
---- !u!1 &3233077313248145133
-GameObject:
+--- !u!75 &7775604923539255311
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933425644787404525}
+  m_Enabled: 0
+  m_Force: {x: 0, y: 0, z: 1000}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!1001 &1158526372226465117
+PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
