@@ -33,7 +33,7 @@ public class SceneSwitchingButtons : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene("LevelOneScene");
+        SceneManager.LoadScene("ThomasScene");
     }
     public void MenuButton()
     {
