@@ -27,6 +27,8 @@ public class PlaceBlocksAbility : MonoBehaviour
 
     PlayerInventory inventory;
 
+    public bool first = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,19 @@ public class PlaceBlocksAbility : MonoBehaviour
     }
     public void InstantiateHologram()
     {
-        DestroyImmediate(placeBlock);
+       // DestroyImmediate(placeBlock);
+       if (placeBlock != null)
+        {
+            placeBlock.transform.position = new Vector3(-100, -100, -100);
+            placeBlock.SetActive(false);
+            
+        }
+       if (first)
+        {
+            placeBlock.transform.position = Vector3.zero;
+            first = false;
+        }
+
         placeBlock = Instantiate(hologramPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
        // placeBlock.transform.rotation = this.transform.parent.rotation;
           if (placeBlock.transform.TryGetComponent<Renderer>(out Renderer rend)) rend.material = holoMat;
