@@ -1515,6 +1515,7 @@ GameObject:
   - component: {fileID: 4794712704112790892}
   - component: {fileID: 47943707962238869}
   - component: {fileID: 2606165705706866495}
+  - component: {fileID: 2690559392043141183}
   m_Layer: 6
   m_Name: PlayerLogic
   m_TagString: Untagged
