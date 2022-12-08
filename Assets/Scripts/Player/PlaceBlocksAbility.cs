@@ -21,6 +21,8 @@ public class PlaceBlocksAbility : MonoBehaviour
     Vector3 placePoint;
     [SerializeField] List<AudioClip> placeSfx = new List<AudioClip>();
 
+
+    bool first = true;
     AudioSource placeSource;
 
     float cooldownTimer = 0;
@@ -36,7 +38,18 @@ public class PlaceBlocksAbility : MonoBehaviour
     }
     public void InstantiateHologram()
     {
-        DestroyImmediate(placeBlock);
+        // DestroyImmediate(placeBlock);
+        if (placeBlock != null)
+        {
+            placeBlock.transform.position = new Vector3(-100, -100, -100);
+            placeBlock.SetActive(false);
+
+        }
+        if (first)
+        {
+            placeBlock.transform.position = Vector3.zero;
+            first = false;
+        }
         placeBlock = Instantiate(hologramPrefab, placePoint + blockPrefab.transform.position, this.transform.parent.rotation * blockPrefab.transform.rotation);
        // placeBlock.transform.rotation = this.transform.parent.rotation;
           if (placeBlock.transform.TryGetComponent<Renderer>(out Renderer rend)) rend.material = holoMat;
