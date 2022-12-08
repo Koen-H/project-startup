@@ -2622,7 +2622,7 @@ PrefabInstance:
     - target: {fileID: 8479931273637133374, guid: 45c3861946424af40a990d9651c09ca1,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8479931273637133374, guid: 45c3861946424af40a990d9651c09ca1,
         type: 3}
@@ -45254,44 +45254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbeadff33a076a649bc9ca9667e97df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: MenuThemeMixed
-    clip: {fileID: 8300000, guid: 7069b39a6a16f864183774a9e249eb8d, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 1
-  - name: VictorySound
-    clip: {fileID: 8300000, guid: d92b6f38d08e83b41988bb1cb4a640f0, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - name: RacingIntro
-    clip: {fileID: 8300000, guid: 0f7a0d399f57ffb49af3fc6035beb18e, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - name: RacingMusic
-    clip: {fileID: 8300000, guid: ac4b2de3f5c8bab43bdc8c66f59ad3ad, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 1
-  quacks:
-  - name: Quack1
-    clip: {fileID: 8300000, guid: 27e13a5b7b3cfaa4da3b9ce8b15499e8, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - name: Quack2
-    clip: {fileID: 8300000, guid: 1030a3e72ecc2ff4ea0c5048d5037043, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
 --- !u!4 &1703052789
 Transform:
   m_ObjectHideFlags: 0

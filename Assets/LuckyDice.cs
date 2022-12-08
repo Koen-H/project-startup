@@ -18,7 +18,8 @@ public class LuckyDice : MonoBehaviour
     [SerializeField]
     private GameObject diceItem;
 
-
+    [SerializeField] private GameObject audioObject;
+    [SerializeField] private AudioClip pickupSound;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +68,8 @@ public class LuckyDice : MonoBehaviour
         shootFrom.transform.Rotate(Vector3.right, randTwo);
         item.GetComponent<Rigidbody>().AddForce(shootFrom.transform.forward * SHOOTSTRENGTH);
         item.GetComponent<DiceItem>().afterDiceDelay = false;
+        GameObject audio = Instantiate(audioObject, shootFrom.transform.position, Quaternion.identity);
+        audio.GetComponent<AudioSource>().clip = pickupSound;
         Destroy(this.gameObject);
 
     }

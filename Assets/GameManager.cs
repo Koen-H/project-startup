@@ -128,6 +128,8 @@ public class GameManager : MonoBehaviour
         foreach (PlayerData player in GameManager.Instance.players)//Look at the winner
         {
             player.gameObject.GetComponentInChildren<Movement>().allowInput = allowInput;
+            player.gameObject.GetComponent<randomQuack>().enabled = allowInput;
+            player.gameObject.GetComponentInChildren<PlaceBlocksAbility>().enabled = allowInput;
         }
     }
 
