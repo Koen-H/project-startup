@@ -75,7 +75,9 @@ public class ManageUI : MonoBehaviour
 
     private void Update()
     {
-        
+
+        if (PlayerOneInventory == null || PlayerTwoInventory == null) return;
+
         if (twoPlayersReady)
         {
             Debug.Log("test");

@@ -4,18 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneSwitchingButtons : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+{ 
 
     public void ShopButton()
     {
@@ -37,7 +26,6 @@ public class SceneSwitchingButtons : MonoBehaviour
     }
     public void MenuButton()
     {
-        Debug.Log("Test");
         SceneManager.LoadScene("StartMenuScene");
     }
 }
