@@ -157,6 +157,7 @@ public class GameManager : MonoBehaviour
         backgroundMusic.loop = true;
         backgroundMusic.Play();
         centerText.text = "";
+        topText.text = "";
     }
 
     private IEnumerator WinnerCountDown()
