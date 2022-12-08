@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,15 @@ public class ManageUI : MonoBehaviour
     PlayerInventory PlayerOneInventory;
     PlayerInventory PlayerTwoInventory;
 
+    Color normalColor = new Color(255, 255, 255, 255);
+    [SerializeField] Color darknedColor = new Color(96, 96, 96, 255);
+
+    [SerializeField] TextMeshProUGUI cooldownP1;
+    [SerializeField] TextMeshProUGUI cooldownP2;
+
+    bool twoPlayersReady = false;
+
+
     public void AddPlayer(Transform player)
     {
         Debug.Log("Added player");
@@ -29,6 +39,7 @@ public class ManageUI : MonoBehaviour
         {
             PlayerTwoInventory = player.GetComponentInChildren<PlayerInventory>();
             PlayerTwoInventory.OnSwitchItem += PlayerTwoInventory_OnSwitchItem;
+            twoPlayersReady = true;
 
         }
         else Debug.LogError("TOO MANY PLAYERS!!!!");
@@ -59,6 +70,36 @@ public class ManageUI : MonoBehaviour
             case 1:
                 imagePlayerOne.sprite = pictureBlock;
                 break;
+        }
+    }
+
+    private void Update()
+    {
+        if (twoPlayersReady)
+        {
+            float p1CooldownTime = PlayerOneInventory.place.getCooldownTimer();
+            float p2CooldownTime = PlayerTwoInventory.place.getCooldownTimer();
+            if (p1CooldownTime > 0)
+            {
+                cooldownP1.text = p1CooldownTime.ToString("F1");
+                imagePlayerOne.color = darknedColor;
+            }
+            else
+            {
+                cooldownP1.text = "";
+                imagePlayerOne.color = normalColor;
+            }
+
+            if (p2CooldownTime > 0)
+            {
+                cooldownP2.text = p2CooldownTime.ToString("F1");
+                imagePlayerTwo.color = darknedColor;
+            }
+            else
+            {
+                cooldownP2.text = "";
+                imagePlayerTwo.color = normalColor;
+            }
         }
     }
 

@@ -9,7 +9,9 @@ public class PlayerInventory : MonoBehaviour
 {
     public List<GameObject> playerStorage;
     int currentBlockIndex = 0;
-    PlaceBlocksAbility place;
+    public PlaceBlocksAbility place;
+
+
 
     public event EventHandler OnSwitchItem;
 
