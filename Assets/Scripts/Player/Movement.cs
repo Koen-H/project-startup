@@ -46,6 +46,10 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     bool grounded;
+    bool airborn;
+    [SerializeField] ParticleSystem fallDust;
+    [SerializeField] GameObject dustParticle; 
+ 
     Vector2 moving;
 
 
@@ -99,6 +103,12 @@ public class Movement : MonoBehaviour
         throw new NotImplementedException();
     }
 
+    void FallDust()
+    {
+        GameObject newDust = Instantiate(dustParticle);
+        newDust.transform.position = this.transform.position; 
+    }
+
     float angle = 0;
     // Update is called once per frame
     void Update()
@@ -106,6 +116,7 @@ public class Movement : MonoBehaviour
         //playerAnimator.SetBool("jumping", true);
 
         //    rigidBody.velocity = new Vector3(rigidBody.velocity.x * 0.1f, rigidBody.velocity.y, rigidBody.velocity.z * 0.1f);
+
 
         movement2d = Vector2.zero;
         movement2d = moving;
@@ -117,6 +128,9 @@ public class Movement : MonoBehaviour
       //  Debug.DrawLine(ray.origin, ray.origin + ray.direction * 0.3f);
 
         grounded = Physics.Raycast(new Vector3(playerPosition.x, playerPosition.y + 0.1f, playerPosition.z), Vector3.down, 0.3f, groundLayer);
+
+        if (grounded && airborn) FallDust();
+        airborn = !grounded; 
 
         if (!grounded)
         {
