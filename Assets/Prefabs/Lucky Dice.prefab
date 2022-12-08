@@ -170,6 +170,9 @@ MonoBehaviour:
   SHOOTSTRENGTH: 300
   TOTAL_RANDOM: 0
   diceItem: {fileID: 0}
+  audioObject: {fileID: 6461967776118139730, guid: 37f7677170f1339469f13b3c7b809adb,
+    type: 3}
+  pickupSound: {fileID: 8300000, guid: f3a80ef9869c436478659cfe5cf98720, type: 3}
 --- !u!1001 &7614910293189732719
 PrefabInstance:
   m_ObjectHideFlags: 0

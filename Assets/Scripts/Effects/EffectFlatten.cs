@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -25,6 +26,8 @@ public class EffectFlatten : MonoBehaviour
 
     Vector3 targetScale, originalScale;
 
+    AudioSource duckPain;
+
     void Start()
     {
         growBack = false;
@@ -32,6 +35,10 @@ public class EffectFlatten : MonoBehaviour
         targetScale = new Vector3(transform.localScale.x, originalScale.y * FLATTEN_STRENGTH, transform.localScale.z);
         this.transform.localScale = targetScale;
         StartCoroutine(FlattenCountdown());
+        duckPain = this.gameObject.AddComponent<AudioSource>();
+        duckPain.clip = Resources.Load<AudioClip>("SFX/ducksad");
+        duckPain.loop = false;  
+        duckPain.Play();
     }
 
     void Update()

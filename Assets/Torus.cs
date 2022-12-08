@@ -12,6 +12,7 @@ public class Torus : DiceItem
     public GameObject torusPartPrefab;
 
     public GameObject playerPickedUp;
+    bool didBongo = false;
 
     // Update is called once per frame
     void Update()
@@ -42,6 +43,7 @@ public class Torus : DiceItem
 
     void DoBongo()
     {
+        if (didBongo) return;
         _render = GetComponent<TorusRender>();
         _render.SetSpeed(_speed);
         _render.SetDistance(_distance);
@@ -56,6 +58,8 @@ public class Torus : DiceItem
             torusPart.GetComponent<TorusTest>().ExcludePlayer(playerPickedUp);
             torusPart.transform.localScale = new Vector3(_size, _size, _size);
         }
+        this.GetComponent<AudioSource>().Play();
+        didBongo = true;
        // Destroy(gameObject);
     }
 }

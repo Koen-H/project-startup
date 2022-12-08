@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,9 @@ public class PlaceBlocksAbility : MonoBehaviour
     public GameObject placeBlock;
     [SerializeField] Material holoMat;
     Vector3 placePoint;
+    [SerializeField] List<AudioClip> placeSfx = new List<AudioClip>();
+
+    AudioSource placeSource;
 
     float cooldownTimer = 0;
 
@@ -27,6 +31,8 @@ public class PlaceBlocksAbility : MonoBehaviour
     void Start()
     {
         InstantiateHologram();
+        placeSource = this.AddComponent<AudioSource>();
+        placeSource.loop = false;
     }
     public void InstantiateHologram()
     {
@@ -100,6 +106,9 @@ public class PlaceBlocksAbility : MonoBehaviour
             objectPlaced.SetActive(true);
             objectPlaced.layer = 3;
             cooldownTimer = COOLDOWN_BLOCK_PLACING;
+            objectPlaced.GetComponent<AudioSource>().Play();
+            placeSource.clip = placeSfx[Random.Range(0, placeSfx.Count)];
+            placeSource.Play();
             if (objectPlaced.GetComponent<BarrelMovement>())
             {
                 objectPlaced.GetComponent<BarrelMovement>().isHologram = false;
