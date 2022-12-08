@@ -75,8 +75,11 @@ public class ManageUI : MonoBehaviour
 
     private void Update()
     {
+        
         if (twoPlayersReady)
         {
+            Debug.Log("test");
+
             float p1CooldownTime = PlayerOneInventory.place.getCooldownTimer();
             float p2CooldownTime = PlayerTwoInventory.place.getCooldownTimer();
             if (p1CooldownTime > 0)
@@ -101,6 +104,7 @@ public class ManageUI : MonoBehaviour
                 imagePlayerTwo.color = normalColor;
             }
         }
+        
     }
 
     public void EnabeUI()

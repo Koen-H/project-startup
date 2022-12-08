@@ -61,7 +61,7 @@ public class PlaceBlocksAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(cooldownTimer);
         placeBlock.transform.rotation = this.transform.parent.rotation * blockPrefab.transform.rotation;
 
         if (cooldownTimer > 0)
@@ -76,7 +76,13 @@ public class PlaceBlocksAbility : MonoBehaviour
         RaycastHit hitGround;
         Physics.Raycast(blockPlacePosition.position, Vector3.down, out hitWater, float.MaxValue, waterLayer);
         Physics.Raycast(blockPlacePosition.position, Vector3.down, out hitGround, float.MaxValue, placeAbleLayer);
-        hit = (hitWater.distance < hitGround.distance) ? hitWater : hitGround;
+
+        Debug.DrawRay(blockPlacePosition.position, Vector3.down);
+        Debug.Log(hitWater.collider);
+        Debug.Log(hitGround.collider);
+        if (hitWater.collider != null) hit = (hitWater.distance < hitGround.distance) ? hitWater : hitGround;
+        else hit = hitGround;
+        Debug.Log(hit.collider);
         if (hit.collider != null)
         {
             //if(hitLayer == placeAbleLayer || hitLayer == waterLayer)
