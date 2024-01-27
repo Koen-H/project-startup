@@ -33,6 +33,21 @@ public class PlayerSpawnLogic : MonoBehaviour
             Debug.Log("loop");
             flickerMats[i] = flickerMat;
         }
+
+        Vector3 bruh =  Vector3.Normalize(Vector3.Cross(new Vector3(1, 1, 1), new Vector3(1, 1, 1)));
+        Debug.Log("fskdnjhfjkd FIUCUKCKKKK : " + bruh);
+
+         bruh = Vector3.Normalize(Vector3.Cross(new Vector3(0, 1, 0), new Vector3(0, 1, 0)));
+        Debug.Log("fskdnjhfjkd FIUcfgcgjhfghjfghjcgfhjgcCUKCKKKK : " + bruh);
+
+        bruh = Vector3.Normalize(Vector3.Cross(new Vector3(1, 0, 0), new Vector3(0, 0, 1))) * -1;
+        Debug.Log("fskdnjhfjkd FIUCUKCKKKK : " + bruh);
+
+        bruh = Vector3.Normalize(Vector3.Cross(new Vector3(0, 1, 0), new Vector3(1, 0, 0)));
+        Debug.Log("fskdnjhfjkd FIUCUKCKKKK : " + bruh);
+
+        bruh = Vector3.Normalize(Vector3.Cross(new Vector3(1, 1, 1), new Vector3(0, 0, 0)));
+        Debug.Log("fskdnjhfjkd FIUCUKCKKKK : " + bruh);
     }
 
     public void DespawnPlayer()
@@ -85,5 +100,6 @@ public class PlayerSpawnLogic : MonoBehaviour
     {
        // if (Input.GetKeyDown(KeyCode.R)) SpawnPlayer();
         if(spawnProtection) SpawnProtection();
+
     }
 }
